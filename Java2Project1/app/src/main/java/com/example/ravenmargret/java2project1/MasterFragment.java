@@ -1,11 +1,14 @@
 package com.example.ravenmargret.java2project1;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.app.ListFragment;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import java.io.Serializable;
+import java.util.ArrayList;
 
 import com.example.ravenmargret.java2project1.dummy.DummyContent;
 
@@ -17,8 +20,10 @@ import com.example.ravenmargret.java2project1.dummy.DummyContent;
  * interface.
  */
 
-public class MasterFragment extends ListFragment
+public class MasterFragment extends ListFragment implements Serializable
 {
+    Context mContext;
+    ArrayList<Weather> mObjects;
 
     private OnFragmentInteractionListener mListener;
 
