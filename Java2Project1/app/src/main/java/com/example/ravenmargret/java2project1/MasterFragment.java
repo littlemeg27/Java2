@@ -20,7 +20,7 @@ import com.example.ravenmargret.java2project1.dummy.DummyContent;
  * interface.
  */
 
-public class MasterFragment extends ListFragment implements Serializable
+public class MasterFragment extends ListFragment
 {
     Context mContext;
     ArrayList<Weather> mObjects;
@@ -94,7 +94,7 @@ public class MasterFragment extends ListFragment implements Serializable
      * >Communicating with Other Fragments</a> for more information.
      */
 
-    public interface OnFragmentInteractionListener
+    public interface OnFragmentInteractionListener //This method transfers data to the other fragment
     {
         // TODO: Update argument type and name
         public void onFragmentInteraction(String id);
