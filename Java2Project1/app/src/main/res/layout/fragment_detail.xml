@@ -8,18 +8,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/dayTextView"
-        android:text="@string/hello_blank_fragment"/>
+        android:text="Day"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/forcastTextView"
-        android:text="@string/hello_blank_fragment"/>
+        android:text="Forcast"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/MetricForcastTextView"
-        android:text="@string/hello_blank_fragment"/>
+        android:text="Metric Forcast"/>
 
 </FrameLayout>
