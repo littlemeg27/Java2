@@ -35,7 +35,7 @@ import java.util.ArrayList;
 public class MainActivity extends ActionBarActivity implements MasterFragment.OnFragmentInteractionListener
 {
     FragmentManager manager;
-    final String TAG = "API TEST";
+    //final String TAG = "API TEST";
     //API key 7cba3eee76e99b48
     Context mContext;
 
@@ -61,6 +61,7 @@ public class MainActivity extends ActionBarActivity implements MasterFragment.On
             {
                 Log.e(TAG, "Invalid query for review: ");
             }
+
     }
 
     private void showMasterFragment(Fragment masterFrag)
@@ -81,113 +82,6 @@ public class MainActivity extends ActionBarActivity implements MasterFragment.On
         showDetailFragment(detailFragment);
     }
 
-    public void onClick(View v)
-    {
-        //Search button
-    }
-
-    private class MyTask extends AsyncTask<String, Void, String>
-    {
-        final String TAG = "API DEMO AsyncTask";
-
-        ProgressDialog dialog = new ProgressDialog(MainActivity.this);
-
-        @Override
-        protected void onPreExecute()
-        {
-            super.onPreExecute();
-
-            dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-            dialog.setMessage("Loading...");
-            dialog.setTitle("Network Call");
-            dialog.show();
-        }
-
-        @Override
-        protected String doInBackground(String... params)
-        {
-            String result = "";
-
-            try
-            {
-                URL url = new URL(params[0]);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.connect();
-
-                InputStream is = connection.getInputStream();
-
-                result = IOUtils.toString(is);
-                is.close();
-
-            }
-            catch (MalformedURLException e)
-            {
-                e.printStackTrace();
-                Toast toast = Toast.makeText(MainActivity.this, "Could not find the anything try again", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-                Toast toast = Toast.makeText(MainActivity.this, "Could not find anything try again", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-
-            return result;
-        }
 
 
-
-        @Override
-        protected void onProgressUpdate(Void... values)
-        {
-            super.onProgressUpdate(values);
-        }
-
-
-        @Override
-        protected void onPostExecute(String s)
-        {
-            super.onPostExecute(s);
-
-            Log.e("JSON DATA", s);
-
-
-            try
-            {
-                JSONObject reviewObject = new JSONObject(s);
-                JSONArray reviewArray = reviewObject.getJSONArray("MovieReviews");
-
-                for (int i = 0; i < reviewArray.length(); i++)
-                {
-                    JSONObject insideObject = reviewArray.getJSONObject(i);
-                    String movieName;
-                    String actorName;
-                    String releaseDate;
-                    String director;
-                    String review;
-
-                    movieName = insideObject.getString("MovieName");
-                    actorName = insideObject.getString("ActorName");
-                    releaseDate = insideObject.getString("ReleaseDate");
-                    director = insideObject.getString("Director");
-                    review = insideObject.getString("Review");
-
-                    movieReviews.add(new Weather(movieName, actorName, releaseDate, director, review));
-                }
-
-            }
-            catch (JSONException e)
-            {
-                //Toast toast = Toast.makeText(MainActivity.this, "Something Happened", Toast.LENGTH_SHORT);
-                //toast.show();
-            }
-
-            CustomAdapter adaptor = new CustomAdapter(mContext, movieReviews);
-            reviewList.setAdapter(adaptor);
-            dialog.cancel();
-
-        }
-
-    }
 }

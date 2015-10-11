@@ -20,7 +20,7 @@ import com.example.ravenmargret.java2project1.dummy.DummyContent;
  * interface.
  */
 
-public class MasterFragment extends ListFragment
+public class MasterFragment extends ListFragment implements WeatherTask.WeatherDataReceiver
 {
     Context mContext;
     ArrayList<Weather> mObjects;
@@ -31,6 +31,12 @@ public class MasterFragment extends ListFragment
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
+
+    @Override
+    public void receiveData(ArrayList _weather)
+    {
+        
+    }
 
     public MasterFragment()
     {
@@ -82,6 +88,8 @@ public class MasterFragment extends ListFragment
             mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
         }
     }
+
+
 
     /**
      * This interface must be implemented by activities that contain this
