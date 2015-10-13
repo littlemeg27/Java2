@@ -25,7 +25,9 @@ import java.util.ArrayList;
 public class WeatherTask extends AsyncTask<String, Void, String>
 {
     final String TAG = "API DEMO AsyncTask";
+    ArrayList<Weather> weatherForcast = new ArrayList<Weather>();
     Context mContext;
+    ArrayList<Weather> mObjects;
     mContext = this;
     ProgressDialog dialog = new ProgressDialog(MasterFragment.this);
     WeatherDataReceiver mReceiver;
@@ -130,10 +132,5 @@ public class WeatherTask extends AsyncTask<String, Void, String>
                 //Toast toast = Toast.makeText(MainActivity.this, "Something Happened", Toast.LENGTH_SHORT);
                 //toast.show();
             }
-
-            CustomAdapter adaptor = new CustomAdapter(mContext, movieReviews);
-            reviewList.setAdapter(adaptor);
-            dialog.cancel();
-
         }
 }
