@@ -1,8 +1,9 @@
+/**
+ * Created by Brenna Pavlinchak on 10/10/15.
+ */
+
 package com.example.ravenmargret.java2project1;
 
-/**
- * Created by ravenmargret on 10/6/15.
- */
 public class Weather
 {
     String mDay;

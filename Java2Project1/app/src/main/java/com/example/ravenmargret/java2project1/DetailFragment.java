@@ -1,5 +1,8 @@
-package com.example.ravenmargret.java2project1;
+/**
+ * Created by Brenna Pavlinchak on 10/10/15.
+ */
 
+package com.example.ravenmargret.java2project1;
 
 import android.os.Bundle;
 import android.app.Fragment;
