@@ -33,14 +33,14 @@ public class MasterFragment extends ListFragment implements WeatherTask.WeatherD
      */
 
     @Override
-    public void receiveData(ArrayList _weather)
+    public void receiveData(Context d, ArrayList<Weather> objects)
     {
-        
+        //Get in weather data
     }
 
     public MasterFragment()
     {
-
+        //Not sure why this is here, gotta figure that out
     }
 
     @Override
@@ -50,6 +50,7 @@ public class MasterFragment extends ListFragment implements WeatherTask.WeatherD
 
         // TODO: Change Adapter to display your content
         setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
+                //Put the call to get the API here to put into the list
                 android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS));
     }
 

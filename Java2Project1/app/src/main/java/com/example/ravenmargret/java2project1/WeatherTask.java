@@ -32,7 +32,7 @@ public class WeatherTask extends AsyncTask<String, Void, String>
 
     public interface WeatherDataReceiver
     {
-        void receiveData(ArrayList<> _weather);
+        void receiveData(Context d, ArrayList<Weather> objects);
     }
 
     public WeatherTask(WeatherDataReceiver _receiver)
