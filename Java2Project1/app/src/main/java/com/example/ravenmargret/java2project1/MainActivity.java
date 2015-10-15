@@ -84,12 +84,7 @@ public class MainActivity extends ActionBarActivity implements MasterFragment.On
         Toast.makeText(this, "This is the one selected " + id, Toast.LENGTH_SHORT).show();
         //DetailFragment detailFragment = new DetailFragment();
 
-
-        // The user selected the headline of an article from the HeadlinesFragment
-        // Do something here to display that article
-
-        DetailFragment detailFragment = (DetailFragment)
-                getSupportFragmentManager().findFragmentById(R.layout.detail_fragment);
+        DetailFragment detailFragment = (DetailFragment)getSupportFragmentManager().findFragmentById(R.layout.detail_fragment);
 
         if (detailFragment != null)
         {
