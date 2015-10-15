@@ -39,7 +39,7 @@ import java.util.ArrayList;
 public class MainActivity extends ActionBarActivity implements MasterFragment.OnFragmentInteractionListener
 {
     FragmentManager manager;
-    //final String TAG = "API TEST";
+    final String TAG = "API TEST";
     //API key 7cba3eee76e99b48
     Context mContext;
 
@@ -57,9 +57,9 @@ public class MainActivity extends ActionBarActivity implements MasterFragment.On
 
             try
             {
-                ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);//Check network class
-                MyTask myTask = new MyTask();
-                myTask.execute("http://api.wunderground.com/api/7cba3eee76e99b48/forecast10day/q/" + SC + "/" + Charleston + ".json");
+                ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE); //Check network class
+                WeatherTask myTask = new WeatherTask(mContext);
+                myTask.execute("http://api.wunderground.com/api/7cba3eee76e99b48/forecast10day/q/SC/Charleston.json");
             }
             catch (Exception e)
             {
@@ -82,10 +82,22 @@ public class MainActivity extends ActionBarActivity implements MasterFragment.On
     public void onFragmentInteraction(String id)
     {
         Toast.makeText(this, "This is the one selected " + id, Toast.LENGTH_SHORT).show();
-        DetailFragment detailFragment = new DetailFragment();
-        showDetailFragment(detailFragment);
+        //DetailFragment detailFragment = new DetailFragment();
+
+
+        // The user selected the headline of an article from the HeadlinesFragment
+        // Do something here to display that article
+
+        DetailFragment detailFragment = (DetailFragment)
+                getSupportFragmentManager().findFragmentById(R.layout.detail_fragment);
+
+        if (detailFragment != null)
+        {
+            // If article frag is available, we're in two-pane layout...
+
+            // Call a method in the ArticleFragment to update its content
+            //showDetailFragment(detailFragment);
+            detailFragment.onCreateView(position);
+        }
     }
-
-
-
 }

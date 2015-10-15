@@ -1,8 +1,10 @@
 /**
  * Created by Brenna Pavlinchak on 10/10/15.
  */
+
 package com.example.ravenmargret.java2project1;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -28,9 +30,15 @@ public class WeatherTask extends AsyncTask<String, Void, String>
     ArrayList<Weather> weatherForcast = new ArrayList<Weather>();
     Context mContext;
     ArrayList<Weather> mObjects;
-    mContext = this;
-    ProgressDialog dialog = new ProgressDialog(MasterFragment.this);
+    ProgressDialog dialog;
     WeatherDataReceiver mReceiver;
+
+    public WeatherTask(Context mContext)
+    {
+        this.mContext = mContext;
+
+       dialog = new ProgressDialog(mContext);
+    }
 
     public interface WeatherDataReceiver
     {
@@ -62,7 +70,7 @@ public class WeatherTask extends AsyncTask<String, Void, String>
             {
                 URL url = new URL(params[0]);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.connect();
+                //connection.connect();
 
                 InputStream is = connection.getInputStream();
 
@@ -73,13 +81,13 @@ public class WeatherTask extends AsyncTask<String, Void, String>
             catch (MalformedURLException e)
             {
                 e.printStackTrace();
-                Toast toast = Toast.makeText(MasterFragment.this, "Could not find the anything try again", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(mContext, "Could not find the anything try again", Toast.LENGTH_SHORT);
                 toast.show();
             }
             catch (IOException e)
             {
                 e.printStackTrace();
-                Toast toast = Toast.makeText(MasterFragment.this, "Could not find anything try again", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(mContext, "Could not find anything try again", Toast.LENGTH_SHORT);
                 toast.show();
             }
 
@@ -101,29 +109,26 @@ public class WeatherTask extends AsyncTask<String, Void, String>
             super.onPostExecute(s);
             Log.e("JSON DATA", s);
 
+            dialog.cancel();
 
             try
             {
-                //JSONObject reviewObject = new JSONObject(s);
-                //JSONArray reviewArray = reviewObject.getJSONArray("MovieReviews");
-                mReceiver.receiveData(weather);
+                JSONObject weatherObject = new JSONObject(s);
+                JSONArray weatherArray = weatherObject.getJSONArray("forecast");
+                //mReceiver.receiveData(Weather);
 
-                for (int i = 0; i < reviewArray.length(); i++)
+                for (int i = 0; i < weatherArray.length(); i++)
                 {
-                    /*JSONObject insideObject = reviewArray.getJSONObject(i);
-                    String movieName;
-                    String actorName;
-                    String releaseDate;
-                    String director;
-                    String review;
+                    JSONObject insideObject = weatherArray.getJSONObject(i);
+                    String day;
+                    String forcast;
+                    String forcastMetric;
 
-                    movieName = insideObject.getString("MovieName");
-                    actorName = insideObject.getString("ActorName");
-                    releaseDate = insideObject.getString("ReleaseDate");
-                    director = insideObject.getString("Director");
-                    review = insideObject.getString("Review");
+                    day = insideObject.getString("title");
+                    forcast = insideObject.getString("fcttext");
+                    forcastMetric = insideObject.getString("fcttext_metric");
 
-                    movieReviews.add(new Weather(movieName, actorName, releaseDate, director, review));*/
+                    weatherForcast.add(new Weather(day, forcast, forcastMetric));
                 }
 
             }

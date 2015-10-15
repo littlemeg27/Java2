@@ -3,35 +3,16 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+    <fragment android:name="com.example.android.fragments.MasterFragment"
+        android:id="@+id/master_fragment"
+        android:layout_weight="1"
+        android:layout_width="1dp"
+        android:layout_height="match_parent" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/CityText"
-            android:layout_weight="0.25"
-
-
-            />
-
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/StateText"
-            android:layout_weight="0.25"
-
-
-            />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Search Weather"
-            android:id="@+id/searchButton"
-            />
-
-    </LinearLayout>
+    <fragment android:name="com.example.android.fragments.DetailFragment"
+        android:id="@+id/detail_fragment"
+        android:layout_weight="2"
+        android:layout_width="1dp"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

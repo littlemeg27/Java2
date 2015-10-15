@@ -4,7 +4,9 @@
 
 package com.example.ravenmargret.java2project1;
 
-public class Weather
+import java.io.Serializable;
+
+public class Weather implements Serializable
 {
     String mDay;
     String mForcast;
@@ -22,7 +24,7 @@ public class Weather
     public String getmForcastMetric() {return mForcastMetric;}
 
 
-    public void setmDay(String mDay) { this.mDay = mDay; }
+    public void setmDay(String mDay) {this.mDay = mDay;}
     public void setmForcast(String mForcast) {this.mForcast = mForcast;}
     public void setmForcastMetric(String mForcastMetric) {this.mForcastMetric = mForcastMetric;}
 

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.app.ListFragment;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -28,7 +29,6 @@ public class MasterFragment extends ListFragment implements WeatherTask.WeatherD
 {
     Context mContext;
     ArrayList<Weather> mObjects;
-
     private OnFragmentInteractionListener mListener;
 
     /**
