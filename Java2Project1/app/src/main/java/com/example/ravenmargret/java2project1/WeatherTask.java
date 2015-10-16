@@ -36,7 +36,6 @@ public class WeatherTask extends AsyncTask<String, Void, String>
     public WeatherTask(Context mContext)
     {
         this.mContext = mContext;
-
         dialog = new ProgressDialog(mContext);
     }
 
@@ -110,13 +109,15 @@ public class WeatherTask extends AsyncTask<String, Void, String>
 
             try
             {
-                JSONObject weatherObject = new JSONObject(s);
-                JSONArray weatherArray = weatherObject.getJSONArray("forecast");
+                JSONObject weather = new JSONObject(s);
+                JSONObject weatherObject = weather.getJSONObject("response").getJSONObject("forecast");
+                Log.e("After weather", s);
+
                 //mReceiver.receiveData(Weather);
 
-                for (int i = 0; i < weatherArray.length(); i++)
+                /*for (int i = 0; i < weatherObject.length(); i++)
                 {
-                    JSONObject insideObject = weatherArray.getJSONObject(i);
+                    JSONObject insideObject = weatherObject.getJSONObject(i);
                     String day;
                     String forcast;
                     String forcastMetric;
@@ -126,7 +127,7 @@ public class WeatherTask extends AsyncTask<String, Void, String>
                     forcastMetric = insideObject.getString("fcttext_metric");
 
                     weatherForcast.add(new Weather(day, forcast, forcastMetric));
-                }
+                }*/
 
             }
             catch (JSONException e)

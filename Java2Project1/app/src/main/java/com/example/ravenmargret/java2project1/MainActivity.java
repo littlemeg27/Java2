@@ -59,7 +59,7 @@ public class MainActivity extends ActionBarActivity implements MasterFragment.On
             {
                 ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE); //Check network class
                 WeatherTask myTask = new WeatherTask(mContext);
-                myTask.execute("http://api.wunderground.com/api/7cba3eee76e99b48/forecast10day/q/SC/Charleston.json");
+                myTask.execute("http://api.wunderground.com/api/7cba3eee76e99b48/forecast10day/q/NC/Charlotte.json");
             }
             catch (Exception e)
             {
