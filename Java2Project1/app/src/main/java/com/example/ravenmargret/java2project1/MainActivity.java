@@ -82,17 +82,16 @@ public class MainActivity extends ActionBarActivity implements MasterFragment.On
     public void onFragmentInteraction(String id)
     {
         Toast.makeText(this, "This is the one selected " + id, Toast.LENGTH_SHORT).show();
-        //DetailFragment detailFragment = new DetailFragment();
-
-        DetailFragment detailFragment = (DetailFragment)getSupportFragmentManager().findFragmentById(R.layout.detail_fragment);
+        DetailFragment detailFragment = (DetailFragment)getFragmentManager().findFragmentById(R.id.container2);
 
         if (detailFragment != null)
         {
-            // If article frag is available, we're in two-pane layout...
-
-            // Call a method in the ArticleFragment to update its content
-            //showDetailFragment(detailFragment);
-            detailFragment.onCreateView(position);
+            detailFragment.updateText(id);
+        }
+        else
+        {
+            detailFragment = new DetailFragment();
+            showDetailFragment(detailFragment);
         }
     }
 }

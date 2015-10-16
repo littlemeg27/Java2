@@ -37,7 +37,7 @@ public class WeatherTask extends AsyncTask<String, Void, String>
     {
         this.mContext = mContext;
 
-       dialog = new ProgressDialog(mContext);
+        dialog = new ProgressDialog(mContext);
     }
 
     public interface WeatherDataReceiver
@@ -70,25 +70,22 @@ public class WeatherTask extends AsyncTask<String, Void, String>
             {
                 URL url = new URL(params[0]);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                //connection.connect();
+                connection.connect();
 
                 InputStream is = connection.getInputStream();
 
                 result = IOUtils.toString(is);
                 is.close();
+                Log.e("Testing",result);
 
             }
             catch (MalformedURLException e)
             {
                 e.printStackTrace();
-                Toast toast = Toast.makeText(mContext, "Could not find the anything try again", Toast.LENGTH_SHORT);
-                toast.show();
             }
             catch (IOException e)
             {
                 e.printStackTrace();
-                Toast toast = Toast.makeText(mContext, "Could not find anything try again", Toast.LENGTH_SHORT);
-                toast.show();
             }
 
             return result;
