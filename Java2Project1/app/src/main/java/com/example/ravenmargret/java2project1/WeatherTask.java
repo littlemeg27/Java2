@@ -75,7 +75,7 @@ public class WeatherTask extends AsyncTask<String, Void, String>
 
                 result = IOUtils.toString(is);
                 is.close();
-                Log.e("Testing",result);
+                //Log.e("Testing",result);
 
             }
             catch (MalformedURLException e)
@@ -103,21 +103,23 @@ public class WeatherTask extends AsyncTask<String, Void, String>
         protected void onPostExecute(String s)
         {
             super.onPostExecute(s);
-            Log.e("JSON DATA", s);
+            //Log.e("JSON DATA", s);
 
             dialog.cancel();
 
             try
             {
                 JSONObject weather = new JSONObject(s);
-                JSONObject weatherObject = weather.getJSONObject("response").getJSONObject("forecast");
-                Log.e("After weather", s);
+                JSONObject weatherObject = weather.getJSONObject("forecast");
+                JSONObject weatherObject1 = weatherObject.getJSONObject("txt_forecast");
+
+                JSONArray weatherArray = weatherObject1.getJSONArray("forecastday");
 
                 //mReceiver.receiveData(Weather);
-
-                /*for (int i = 0; i < weatherObject.length(); i++)
+                for (int i = 0; i < weatherArray.length(); i++)
                 {
-                    JSONObject insideObject = weatherObject.getJSONObject(i);
+                    JSONObject insideObject = weatherArray.getJSONObject(i);
+                    //Log.e("After weather", insideObject);
                     String day;
                     String forcast;
                     String forcastMetric;
@@ -125,9 +127,10 @@ public class WeatherTask extends AsyncTask<String, Void, String>
                     day = insideObject.getString("title");
                     forcast = insideObject.getString("fcttext");
                     forcastMetric = insideObject.getString("fcttext_metric");
+                    Log.e("Weather data", forcast);
 
                     weatherForcast.add(new Weather(day, forcast, forcastMetric));
-                }*/
+                }
 
             }
             catch (JSONException e)
