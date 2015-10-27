@@ -40,6 +40,8 @@ public class MasterFragment extends ListFragment implements WeatherTask.WeatherD
     public void receiveData(Context d, ArrayList<Weather> objects)
     {
         //Get in weather data
+        WeatherTask weatherData = new WeatherTask(null);
+        weatherData.execute();
     }
 
     public MasterFragment()

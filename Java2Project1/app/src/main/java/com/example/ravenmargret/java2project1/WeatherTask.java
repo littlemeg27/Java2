@@ -27,7 +27,7 @@ import java.util.ArrayList;
 public class WeatherTask extends AsyncTask<String, Void, String>
 {
     final String TAG = "API DEMO AsyncTask";
-    ArrayList<Weather> weatherForcast = new ArrayList<Weather>();
+    ArrayList<Weather> weatherForecast = new ArrayList<Weather>();
     Context mContext;
     ArrayList<Weather> mObjects;
     ProgressDialog dialog;
@@ -110,10 +110,10 @@ public class WeatherTask extends AsyncTask<String, Void, String>
             try
             {
                 JSONObject weather = new JSONObject(s);
-                JSONObject weatherObject = weather.getJSONObject("forecast");
-                JSONObject weatherObject1 = weatherObject.getJSONObject("txt_forecast");
+                JSONObject forecastObject = weather.getJSONObject("forecast");
+                JSONObject weatherObject = forecastObject.getJSONObject("txt_forecast");
 
-                JSONArray weatherArray = weatherObject1.getJSONArray("forecastday");
+                JSONArray weatherArray = weatherObject.getJSONArray("forecastday");
 
                 //mReceiver.receiveData(Weather);
                 for (int i = 0; i < weatherArray.length(); i++)
@@ -129,7 +129,7 @@ public class WeatherTask extends AsyncTask<String, Void, String>
                     forcastMetric = insideObject.getString("fcttext_metric");
                     Log.e("Weather data", forcast);
 
-                    weatherForcast.add(new Weather(day, forcast, forcastMetric));
+                    weatherForecast.add(new Weather(day, forcast, forcastMetric));
                 }
 
             }
