@@ -29,7 +29,7 @@ public class WeatherTask extends AsyncTask<String, Void, String>
     final String TAG = "API DEMO AsyncTask";
     ArrayList<Weather> weatherForecast = new ArrayList<Weather>();
     Context mContext;
-    ArrayList<Weather> mObjects;
+    //ArrayList<Weather> mObjects;
     ProgressDialog dialog;
     WeatherDataReceiver mReceiver;
 
@@ -41,7 +41,7 @@ public class WeatherTask extends AsyncTask<String, Void, String>
 
     public interface WeatherDataReceiver
     {
-        void receiveData(Context d, ArrayList<Weather> objects);
+        void receiveData(Context d, ArrayList<Weather> weatherForecast);
     }
 
     public WeatherTask(WeatherDataReceiver _receiver)
