@@ -50,13 +50,10 @@ public class MainActivity extends ActionBarActivity implements MasterFragment.On
         setContentView(R.layout.activity_main);
 
         mContext = this;
-
         manager = getFragmentManager();
+
         MasterFragment masterFragment = new MasterFragment();
         showMasterFragment(masterFragment);
-
-
-
     }
 
     private void showMasterFragment(Fragment masterFrag)
@@ -74,7 +71,9 @@ public class MainActivity extends ActionBarActivity implements MasterFragment.On
     {
         //Create new details fragment, pass weather object to details frag add details frag to layout
         //Dont do what is shown its wrong
-        
+
+        DetailFragment detailFragment = new DetailFragment();
+        showDetailFragment(detailFragment);
 //        Toast.makeText(this, "This is the one selected " + id, Toast.LENGTH_SHORT).show();
 //        DetailFragment detailFragment = (DetailFragment)getFragmentManager().findFragmentById(R.id.container2);
 //
