@@ -6,8 +6,10 @@ package com.example.ravenmargret.java2project1;
 
 import android.app.Activity;
 import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.app.ListFragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -27,7 +29,6 @@ import com.example.ravenmargret.java2project1.dummy.DummyContent;
 
 public class MasterFragment extends ListFragment implements WeatherTask.WeatherDataReceiver
 {
-    Context mContext;
     ArrayList<Weather> mObjects;
     private OnFragmentInteractionListener mListener;
 
@@ -37,27 +38,10 @@ public class MasterFragment extends ListFragment implements WeatherTask.WeatherD
      */
 
     @Override
-    public void receiveData(Context d, ArrayList<Weather> weatherForecast)
+    public void receiveData(ArrayList<Weather> weatherForecast)
     {
         //Get in weather data
-        WeatherTask WeatherDataReceiver 
-
-    }
-
-    public MasterFragment()
-    {
-        //Not sure why this is here, gotta figure that out
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-        super.onCreate(savedInstanceState);
-
-        // TODO: Change Adapter to display your content
-        setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-                //Put the call to get the API here to put into the list
-                android.R.layout.simple_list_item_1, android.R.id.text1, DummyContent.ITEMS));
+        setListAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, weatherForecast));
     }
 
 
@@ -73,6 +57,25 @@ public class MasterFragment extends ListFragment implements WeatherTask.WeatherD
         {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
+
+        try
+        {
+            ConnectivityManager manager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE); //Check network class
+            WeatherTask myTask = new WeatherTask(getActivity(), this);
+            myTask.execute("http://api.wunderground.com/api/7cba3eee76e99b48/forecast10day/q/NC/Charlotte.json");
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
         }
     }
 
@@ -92,7 +95,8 @@ public class MasterFragment extends ListFragment implements WeatherTask.WeatherD
         {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+            Weather w = (Weather)getListAdapter().getItem(position);
+            mListener.onFragmentInteraction(w);
         }
     }
 
@@ -110,7 +114,7 @@ public class MasterFragment extends ListFragment implements WeatherTask.WeatherD
     public interface OnFragmentInteractionListener //This method transfers data to the other fragment
     {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(String id);
+        public void onFragmentInteraction(Weather weatherObject);
     }
 
 }

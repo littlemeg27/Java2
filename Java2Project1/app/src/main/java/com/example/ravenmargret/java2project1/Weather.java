@@ -31,7 +31,6 @@ public class Weather implements Serializable
     @Override
     public String toString()
     {
-        return mDay + mForcast + mForcastMetric;
-
+        return mDay;
     }
 }

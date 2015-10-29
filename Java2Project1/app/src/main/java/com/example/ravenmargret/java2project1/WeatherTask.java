@@ -33,20 +33,16 @@ public class WeatherTask extends AsyncTask<String, Void, String>
     ProgressDialog dialog;
     WeatherDataReceiver mReceiver;
 
-    public WeatherTask(Context mContext)
+    public WeatherTask(Context mContext, WeatherDataReceiver _receiver)
     {
         this.mContext = mContext;
         dialog = new ProgressDialog(mContext);
+        mReceiver = _receiver;
     }
 
     public interface WeatherDataReceiver
     {
-        void receiveData(Context d, ArrayList<Weather> weatherForecast);
-    }
-
-    public WeatherTask(WeatherDataReceiver _receiver)
-    {
-        mReceiver = _receiver;
+        void receiveData(ArrayList<Weather> weatherForecast);
     }
 
         @Override
@@ -103,7 +99,6 @@ public class WeatherTask extends AsyncTask<String, Void, String>
         protected void onPostExecute(String s)
         {
             super.onPostExecute(s);
-            //Log.e("JSON DATA", s);
 
             dialog.cancel();
 
@@ -115,7 +110,6 @@ public class WeatherTask extends AsyncTask<String, Void, String>
 
                 JSONArray weatherArray = weatherObject.getJSONArray("forecastday");
 
-                //mReceiver.receiveData(Weather);
                 for (int i = 0; i < weatherArray.length(); i++)
                 {
                     JSONObject insideObject = weatherArray.getJSONObject(i);
@@ -131,7 +125,7 @@ public class WeatherTask extends AsyncTask<String, Void, String>
 
                     weatherForecast.add(new Weather(day, forcast, forcastMetric));
                 }
-
+                mReceiver.receiveData(weatherForecast);
             }
             catch (JSONException e)
             {
