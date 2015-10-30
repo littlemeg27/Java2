@@ -70,9 +70,9 @@ public class MasterFragment extends ListFragment implements WeatherTask.WeatherD
     {
         super.onActivityCreated(savedInstanceState);
 
-        citySpinner = (Spinner) findViewById(R.id.spinner);
+        /*citySpinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(MasterFragment.this, R.array.spinnerArray, android.R.layout.simple_dropdown_item_1line);
-        citySpinner.setAdapter(spinnerAdapter);
+        citySpinner.setAdapter(spinnerAdapter);*/
 
         try
         {
@@ -83,7 +83,7 @@ public class MasterFragment extends ListFragment implements WeatherTask.WeatherD
         catch (Exception e)
         {
             e.printStackTrace();
-        }
+        }//Cant figure out how to add if/else to try catch for check
     }
 
     @Override
