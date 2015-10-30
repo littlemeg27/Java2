@@ -72,8 +72,16 @@ public class MainActivity extends ActionBarActivity implements MasterFragment.On
         //Create new details fragment, pass weather object to details frag add details frag to layout
         //Dont do what is shown its wrong
 
-        DetailFragment detailFragment = new DetailFragment();
-        showDetailFragment(detailFragment);
+        DetailFragment detailFragment = new DetailFragment(); //Creating details fragment
+        showDetailFragment(detailFragment); //Make Detail frag show
+        
+        Bundle args = new Bundle();
+        args.putInt(DetailFragment.ARG_POSITION, position);
+        detailFragment.setArguments(args);
+
+        //getSupportFragmentManager().findFragmentById(R.id.article_fragment);
+        //Android docs says do this not sure about
+
 //        Toast.makeText(this, "This is the one selected " + id, Toast.LENGTH_SHORT).show();
 //        DetailFragment detailFragment = (DetailFragment)getFragmentManager().findFragmentById(R.id.container2);
 //
