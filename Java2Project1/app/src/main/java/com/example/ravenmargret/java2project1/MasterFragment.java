@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import java.io.Serializable;
 import java.util.ArrayList;
+import android.widget.Spinner;
 
 import com.example.ravenmargret.java2project1.dummy.DummyContent;
 
@@ -31,6 +32,8 @@ public class MasterFragment extends ListFragment implements WeatherTask.WeatherD
 {
     ArrayList<Weather> mObjects;
     private OnFragmentInteractionListener mListener;
+    Spinner citySpinner;
+    ArrayAdapter<String> spinnerAdapter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -66,6 +69,10 @@ public class MasterFragment extends ListFragment implements WeatherTask.WeatherD
     public void onActivityCreated(Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
+
+        citySpinner = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(MasterFragment.this, R.array.spinnerArray, android.R.layout.simple_dropdown_item_1line);
+        citySpinner.setAdapter(spinnerAdapter);
 
         try
         {
