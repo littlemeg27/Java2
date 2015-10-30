@@ -35,6 +35,7 @@ public class MasterFragment extends ListFragment implements WeatherTask.WeatherD
     Spinner citySpinner;
     ArrayAdapter<String> spinnerAdapter;
 
+
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -70,15 +71,39 @@ public class MasterFragment extends ListFragment implements WeatherTask.WeatherD
     {
         super.onActivityCreated(savedInstanceState);
 
-        /*citySpinner = (Spinner) findViewById(R.id.spinner);
+        city = (TextView)findViewById(R.id.cityText);
+        citySpinner = (Spinner) findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(MasterFragment.this, R.array.spinnerArray, android.R.layout.simple_dropdown_item_1line);
-        citySpinner.setAdapter(spinnerAdapter);*/
+        citySpinner.setAdapter(spinnerAdapter);
 
         try
         {
             ConnectivityManager manager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE); //Check network class
-            WeatherTask myTask = new WeatherTask(getActivity(), this);
-            myTask.execute("http://api.wunderground.com/api/7cba3eee76e99b48/forecast10day/q/NC/Charlotte.json");
+
+            if(manager = !null)
+            {
+                WeatherTask myTask = new WeatherTask(getActivity(), this);
+                //use spinner here
+                citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+                {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+                    {
+                        city.setText(spinnerArray.get(position).toString());
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent)
+                    {
+
+                    }
+                });
+                myTask.execute("http://api.wunderground.com/api/7cba3eee76e99b48/forecast10day/q/NC/Charlotte.json");
+            }
+            else
+            {
+                //Save data
+            }
         }
         catch (Exception e)
         {
