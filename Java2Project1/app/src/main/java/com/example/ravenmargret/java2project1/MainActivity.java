@@ -78,6 +78,7 @@ public class MainActivity extends ActionBarActivity implements MasterFragment.On
         args.putInt(DetailFragment.ARG_POSITION, position);
         detailFragment.setArguments(args);
         //According to project ARG_POSITION = final static String ARG_POSITION = "position";
+        //Not sure what the ARG_POSITION, position are for.
 
         showDetailFragment(detailFragment); //Make Detail frag show
 

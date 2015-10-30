@@ -33,9 +33,33 @@ public class DetailFragment extends Fragment
         return inflater.inflate(R.layout.fragment_detail, container2, false);
     }
 
+    @Override
+    public void onStart()
+    {
+        super.onStart();
+
+        Bundle args = getArguments();
+        if (args != null)
+        {
+            // Set article based on argument passed in
+            updateText(args.getInt(ARG_POSITION));
+        }
+        else if (mCurrentPosition != -1)
+        {
+            // Set article based on saved instance state defined during onCreateView
+            updateText(mCurrentPosition);
+        }   //Not sure what mCurrentPosition is for, its set to -1 but not sure why -1
+    }
+
     public void updateText(String id)
     {
         TextView dayText = (TextView) getActivity().findViewById(R.id.dayTextView);
         dayText.setText(id);
+
+        TextView forcastTextView = (TextView) getActivity().findViewById(R.id.forcastTextView);
+        forcastTextView.setText(id);
+
+        TextView MetricForcastTextView = (TextView) getActivity().findViewById(R.id.MetricForcastTextView);
+        MetricForcastTextView.setText(id);
     }
 }
