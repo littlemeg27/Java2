@@ -73,11 +73,13 @@ public class MainActivity extends ActionBarActivity implements MasterFragment.On
         //Dont do what is shown its wrong
 
         DetailFragment detailFragment = new DetailFragment(); //Creating details fragment
-        showDetailFragment(detailFragment); //Make Detail frag show
-        
+
         Bundle args = new Bundle();
         args.putInt(DetailFragment.ARG_POSITION, position);
         detailFragment.setArguments(args);
+        //According to project ARG_POSITION = final static String ARG_POSITION = "position";
+
+        showDetailFragment(detailFragment); //Make Detail frag show
 
         //getSupportFragmentManager().findFragmentById(R.id.article_fragment);
         //Android docs says do this not sure about
