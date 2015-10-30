@@ -17,7 +17,7 @@ import android.widget.TextView;
  */
 public class DetailFragment extends Fragment
 {
-
+    public static final String WEATHERKEY = "theWeatherKey";
 
     public DetailFragment()
     {
@@ -42,24 +42,19 @@ public class DetailFragment extends Fragment
         if (args != null)
         {
             // Set article based on argument passed in
-            updateText(args.getInt(ARG_POSITION));
+            updateText((Weather)args.getSerializable(WEATHERKEY));
         }
-        else if (mCurrentPosition != -1)
-        {
-            // Set article based on saved instance state defined during onCreateView
-            updateText(mCurrentPosition);
-        }   //Not sure what mCurrentPosition is for, its set to -1 but not sure why -1
     }
 
-    public void updateText(String id)
+    public void updateText(Weather weatherObject)
     {
         TextView dayText = (TextView) getActivity().findViewById(R.id.dayTextView);
-        dayText.setText(id);
+        dayText.setText(weatherObject.getmDay());
 
         TextView forcastTextView = (TextView) getActivity().findViewById(R.id.forcastTextView);
-        forcastTextView.setText(id);
+        forcastTextView.setText(weatherObject.getmForcast());
 
         TextView MetricForcastTextView = (TextView) getActivity().findViewById(R.id.MetricForcastTextView);
-        MetricForcastTextView.setText(id);
+        MetricForcastTextView.setText(weatherObject.getmForcastMetric());
     }
 }

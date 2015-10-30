@@ -75,7 +75,7 @@ public class MainActivity extends ActionBarActivity implements MasterFragment.On
         DetailFragment detailFragment = new DetailFragment(); //Creating details fragment
 
         Bundle args = new Bundle();
-        args.putInt(DetailFragment.ARG_POSITION, position);
+        args.putSerializable(DetailFragment.WEATHERKEY, weatherObject);
         detailFragment.setArguments(args);
         //According to project ARG_POSITION = final static String ARG_POSITION = "position";
         //Not sure what the ARG_POSITION, position are for.
