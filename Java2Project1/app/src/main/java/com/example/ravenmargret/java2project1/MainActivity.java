@@ -31,6 +31,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -45,17 +47,6 @@ public class MainActivity extends ActionBarActivity implements MasterFragment.On
     //API key 7cba3eee76e99b48
     Context mContext;
 
-    File external = Environment.getExternalStorageDirectory();
-    // Build file object that points to a folder named "newFolder"
-
-    if(external.isDirectory())
-    {
-        // external is a folder, not a file
-    }
-    else
-    {
-
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -68,6 +59,40 @@ public class MainActivity extends ActionBarActivity implements MasterFragment.On
 
         MasterFragment masterFragment = new MasterFragment();
         showMasterFragment(masterFragment);
+
+        File external = Environment.getExternalStorageDirectory();
+        // Build file object that points to a folder named "newFolder"
+
+        if(external.isDirectory())
+        {
+            // external is a folder, not a file
+        }
+        else
+        {
+
+        }
+        external = Environment.getExternalStorageDirectory();
+        // Build file object that points to a folder named "newFolder"
+        // inside the directory specified by the external File object.
+
+        File newFolder = new File(external, "newFolder");
+        if(newFolder.exists())
+        {
+            // Already exists, do nothing
+        }
+        else
+        {
+            // Doesn't exist, make the folder
+            newFolder.mkdir();
+        }
+
+        /*// Read in a private file
+        FileInputStream inFile = this.openFileInput("file.txt"); //this.openFileInput("some_file.txt");
+        // Create new or open existing private file
+        FileOutputStream outFile = this.openFileOutput("file2.txt", Context.MODE_PRIVATE);*/
+
+
+
     }
 
     private void showMasterFragment(Fragment masterFrag)
