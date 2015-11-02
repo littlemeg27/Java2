@@ -8,6 +8,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -32,6 +34,7 @@ public class WeatherTask extends AsyncTask<String, Void, String>
     //ArrayList<Weather> mObjects;
     ProgressDialog dialog;
     WeatherDataReceiver mReceiver;
+
 
     public WeatherTask(Context mContext, WeatherDataReceiver _receiver)
     {
@@ -115,15 +118,15 @@ public class WeatherTask extends AsyncTask<String, Void, String>
                     JSONObject insideObject = weatherArray.getJSONObject(i);
                     //Log.e("After weather", insideObject);
                     String day;
-                    String forcast;
-                    String forcastMetric;
+                    String forecast;
+                    String forecastMetric;
 
                     day = insideObject.getString("title");
-                    forcast = insideObject.getString("fcttext");
-                    forcastMetric = insideObject.getString("fcttext_metric");
-                    Log.e("Weather data", forcast);
+                    forecast = insideObject.getString("fcttext");
+                    forecastMetric = insideObject.getString("fcttext_metric");
+                    Log.e("Weather data", forecast);
 
-                    weatherForecast.add(new Weather(day, forcast, forcastMetric));
+                    weatherForecast.add(new Weather(day, forecast, forecastMetric));
                 }
                 mReceiver.receiveData(weatherForecast);
             }

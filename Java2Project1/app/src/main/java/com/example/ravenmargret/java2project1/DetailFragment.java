@@ -51,10 +51,10 @@ public class DetailFragment extends Fragment
         TextView dayText = (TextView) getActivity().findViewById(R.id.dayTextView);
         dayText.setText(weatherObject.getmDay());
 
-        TextView forcastTextView = (TextView) getActivity().findViewById(R.id.forcastTextView);
-        forcastTextView.setText(weatherObject.getmForcast());
+        TextView forecastTextView = (TextView) getActivity().findViewById(R.id.forecastTextView);
+        forecastTextView.setText(weatherObject.getmForcast());
 
-        TextView MetricForcastTextView = (TextView) getActivity().findViewById(R.id.MetricForcastTextView);
-        MetricForcastTextView.setText(weatherObject.getmForcastMetric());
+        TextView metricForecastTextView = (TextView) getActivity().findViewById(R.id.metricForecastTextView);
+        metricForecastTextView.setText(weatherObject.getmForcastMetric());
     }
 }

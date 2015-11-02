@@ -15,13 +15,13 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/forcastTextView"
-        android:text="Forcast"/>
+        android:id="@+id/forecastTextView"
+        android:text="Forecast"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/MetricForcastTextView"
-        android:text="Metric Forcast"/>
+        android:id="@+id/metricForecastTextView"
+        android:text="Metric Forecast"/>
 
 </LinearLayout>

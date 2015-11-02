@@ -6,6 +6,7 @@ package com.example.ravenmargret.java2project1;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -29,6 +30,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -42,6 +44,18 @@ public class MainActivity extends ActionBarActivity implements MasterFragment.On
     final String TAG = "API TEST";
     //API key 7cba3eee76e99b48
     Context mContext;
+
+    File external = Environment.getExternalStorageDirectory();
+    // Build file object that points to a folder named "newFolder"
+
+    if(external.isDirectory())
+    {
+        // external is a folder, not a file
+    }
+    else
+    {
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -77,25 +91,7 @@ public class MainActivity extends ActionBarActivity implements MasterFragment.On
         Bundle args = new Bundle();
         args.putSerializable(DetailFragment.WEATHERKEY, weatherObject);
         detailFragment.setArguments(args);
-        //According to project ARG_POSITION = final static String ARG_POSITION = "position";
-        //Not sure what the ARG_POSITION, position are for.
 
         showDetailFragment(detailFragment); //Make Detail frag show
-
-        //getSupportFragmentManager().findFragmentById(R.id.article_fragment);
-        //Android docs says do this not sure about
-
-//        Toast.makeText(this, "This is the one selected " + id, Toast.LENGTH_SHORT).show();
-//        DetailFragment detailFragment = (DetailFragment)getFragmentManager().findFragmentById(R.id.container2);
-//
-//        if (detailFragment != null)
-//        {
-//            detailFragment.updateText(id);
-//        }
-//        else
-//        {
-//            detailFragment = new DetailFragment();
-//            showDetailFragment(detailFragment);
-//        }
     }
 }
