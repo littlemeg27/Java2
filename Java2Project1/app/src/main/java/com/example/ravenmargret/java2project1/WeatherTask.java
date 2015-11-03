@@ -18,8 +18,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -34,7 +38,6 @@ public class WeatherTask extends AsyncTask<String, Void, String>
     //ArrayList<Weather> mObjects;
     ProgressDialog dialog;
     WeatherDataReceiver mReceiver;
-
 
     public WeatherTask(Context mContext, WeatherDataReceiver _receiver)
     {
@@ -136,4 +139,6 @@ public class WeatherTask extends AsyncTask<String, Void, String>
                 //toast.show();
             }
         }
+
+
 }

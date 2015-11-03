@@ -7,6 +7,7 @@ package com.example.ravenmargret.java2project1;
 import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.app.ListFragment;
 import android.util.Log;
@@ -14,6 +15,12 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import android.widget.Spinner;
@@ -34,7 +41,7 @@ public class MasterFragment extends ListFragment implements WeatherTask.WeatherD
     private OnFragmentInteractionListener mListener;
     Spinner citySpinner;
     ArrayAdapter<String> spinnerAdapter;
-
+    public static String fileName = "api.ser";
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -79,10 +86,15 @@ public class MasterFragment extends ListFragment implements WeatherTask.WeatherD
         try
         {
             ConnectivityManager manager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE); //Check network class
-
-            /*if(manager = !null)
-            {*/
+            NetworkInfo network = manager.getActiveNetworkInfo();
+            if(network == null)
+            {
+                //read(Context context);//Save data
+            }
+            else
+            {
                 WeatherTask myTask = new WeatherTask(getActivity(), this);
+
                 //use spinner here
                 /*citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
                 {
@@ -98,17 +110,15 @@ public class MasterFragment extends ListFragment implements WeatherTask.WeatherD
 
                     }
                 });*/
+
                 myTask.execute("http://api.wunderground.com/api/7cba3eee76e99b48/forecast10day/q/NC/Charlotte.json");
-           /* }
-            else
-            {
-                //Save data
-            }*/
+
+            }
         }
         catch (Exception e)
         {
             e.printStackTrace();
-        }//Cant figure out how to add if/else to try catch for check
+        }
     }
 
     @Override
@@ -147,6 +157,44 @@ public class MasterFragment extends ListFragment implements WeatherTask.WeatherD
     {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Weather weatherObject);
+    }
+
+    public void save(Context context)
+    {
+        try
+        {
+            FileOutputStream fileOut = context.openFileOutput(fileName, Context.MODE_PRIVATE);
+            ObjectOutputStream objectOutput = new ObjectOutputStream(fileOut);
+            objectOutput.writeObject(this);
+            objectOutput.close();
+            fileOut.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public static Weather read(Context context)
+    {
+        Weather makeWeather = null;
+        try
+        {
+            FileInputStream fileInput = context.openFileInput(fileName);
+            ObjectInputStream objectInput = new ObjectInputStream(fileInput);
+            makeWeather = (Weather) objectInput.readObject();
+            objectInput.close();
+            fileInput.close();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        catch (ClassNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        return makeWeather;
     }
 
 }

@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 public class Weather implements Serializable
 {
+    private static final long serialVersionUID = 8736847634070552888L;
     String mDay;
     String mForcast;
     String mForcastMetric;
