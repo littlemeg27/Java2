@@ -110,9 +110,8 @@ public class MasterFragment extends ListFragment implements WeatherTask.WeatherD
 
                     }
                 });*/
-
+                //Move connect to Task 
                 myTask.execute("http://api.wunderground.com/api/7cba3eee76e99b48/forecast10day/q/NC/Charlotte.json");
-
             }
         }
         catch (Exception e)
@@ -158,43 +157,4 @@ public class MasterFragment extends ListFragment implements WeatherTask.WeatherD
         // TODO: Update argument type and name
         public void onFragmentInteraction(Weather weatherObject);
     }
-
-    public void save(Context context)
-    {
-        try
-        {
-            FileOutputStream fileOut = context.openFileOutput(fileName, Context.MODE_PRIVATE);
-            ObjectOutputStream objectOutput = new ObjectOutputStream(fileOut);
-            objectOutput.writeObject(this);
-            objectOutput.close();
-            fileOut.close();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-    }
-
-    public static Weather read(Context context)
-    {
-        Weather makeWeather = null;
-        try
-        {
-            FileInputStream fileInput = context.openFileInput(fileName);
-            ObjectInputStream objectInput = new ObjectInputStream(fileInput);
-            makeWeather = (Weather) objectInput.readObject();
-            objectInput.close();
-            fileInput.close();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        catch (ClassNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-        return makeWeather;
-    }
-
 }

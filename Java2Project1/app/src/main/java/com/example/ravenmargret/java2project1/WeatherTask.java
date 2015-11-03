@@ -30,7 +30,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 
-public class WeatherTask extends AsyncTask<String, Void, String>
+public class WeatherTask extends AsyncTask<String, Void, ArrayList<Weather>>
 {
     final String TAG = "API DEMO AsyncTask";
     ArrayList<Weather> weatherForecast = new ArrayList<Weather>();
@@ -63,7 +63,7 @@ public class WeatherTask extends AsyncTask<String, Void, String>
         }
 
         @Override
-        protected String doInBackground(String... params)
+        protected ArrayList<Weather> doInBackground(String... params)
         {
             String result = "";
 
@@ -78,6 +78,7 @@ public class WeatherTask extends AsyncTask<String, Void, String>
                 result = IOUtils.toString(is);
                 is.close();
                 //Log.e("Testing",result);
+                //Saving loading goes here
 
             }
             catch (MalformedURLException e)
@@ -89,7 +90,36 @@ public class WeatherTask extends AsyncTask<String, Void, String>
                 e.printStackTrace();
             }
 
-            return result;
+            try
+            {
+                JSONObject weather = new JSONObject(result);
+                JSONObject forecastObject = weather.getJSONObject("forecast");
+                JSONObject weatherObject = forecastObject.getJSONObject("txt_forecast");
+
+                JSONArray weatherArray = weatherObject.getJSONArray("forecastday");
+
+                for (int i = 0; i < weatherArray.length(); i++)
+                {
+                    JSONObject insideObject = weatherArray.getJSONObject(i);
+                    String day;
+                    String forecast;
+                    String forecastMetric;
+
+                    day = insideObject.getString("title");
+                    forecast = insideObject.getString("fcttext");
+                    forecastMetric = insideObject.getString("fcttext_metric");
+                    Log.e("Weather data", forecast);
+
+                    weatherForecast.add(new Weather(day, forecast, forecastMetric));
+                }
+
+            }
+            catch (JSONException e)
+            {
+                //Toast toast = Toast.makeText(MainActivity.this, "Something Happened", Toast.LENGTH_SHORT);
+                //toast.show();
+            }
+            return weatherForecast;
         }
 
 
@@ -102,42 +132,12 @@ public class WeatherTask extends AsyncTask<String, Void, String>
 
 
         @Override
-        protected void onPostExecute(String s)
+        protected void onPostExecute(ArrayList<Weather> weatherAPI)
         {
-            super.onPostExecute(s);
+            super.onPostExecute(weatherAPI);
 
             dialog.cancel();
-
-            try
-            {
-                JSONObject weather = new JSONObject(s);
-                JSONObject forecastObject = weather.getJSONObject("forecast");
-                JSONObject weatherObject = forecastObject.getJSONObject("txt_forecast");
-
-                JSONArray weatherArray = weatherObject.getJSONArray("forecastday");
-
-                for (int i = 0; i < weatherArray.length(); i++)
-                {
-                    JSONObject insideObject = weatherArray.getJSONObject(i);
-                    //Log.e("After weather", insideObject);
-                    String day;
-                    String forecast;
-                    String forecastMetric;
-
-                    day = insideObject.getString("title");
-                    forecast = insideObject.getString("fcttext");
-                    forecastMetric = insideObject.getString("fcttext_metric");
-                    Log.e("Weather data", forecast);
-
-                    weatherForecast.add(new Weather(day, forecast, forecastMetric));
-                }
-                mReceiver.receiveData(weatherForecast);
-            }
-            catch (JSONException e)
-            {
-                //Toast toast = Toast.makeText(MainActivity.this, "Something Happened", Toast.LENGTH_SHORT);
-                //toast.show();
-            }
+            mReceiver.receiveData(weatherForecast);
         }
 
 
