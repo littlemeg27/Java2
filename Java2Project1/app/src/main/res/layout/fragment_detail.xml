@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/dayTextView"
+        android:layout_marginLeft="10dp"
         android:text="Day"/>
 
     <TextView
@@ -17,6 +18,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/forecastTextView"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:text="Forecast"/>
 
     <TextView
@@ -24,6 +26,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/metricForecastTextView"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:text="Metric Forecast"/>
 
 </LinearLayout>
