@@ -83,7 +83,7 @@ public class MasterFragment extends ListFragment implements WeatherTask.WeatherD
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(MasterFragment.this, R.array.spinnerArray, android.R.layout.simple_dropdown_item_1line);
         citySpinner.setAdapter(spinnerAdapter);*/
 
-        try
+        /*try
         {
             ConnectivityManager manager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE); //Check network class
             NetworkInfo network = manager.getActiveNetworkInfo();
@@ -110,14 +110,14 @@ public class MasterFragment extends ListFragment implements WeatherTask.WeatherD
 
                     }
                 });*/
-                //Move connect to Task 
-                myTask.execute("http://api.wunderground.com/api/7cba3eee76e99b48/forecast10day/q/NC/Charlotte.json");
+                //Move connect to Task
+                /*myTask.execute("http://api.wunderground.com/api/7cba3eee76e99b48/forecast10day/q/NC/Charlotte.json");
             }
         }
         catch (Exception e)
         {
             e.printStackTrace();
-        }
+        }*/
     }
 
     @Override

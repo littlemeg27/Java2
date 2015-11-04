@@ -7,6 +7,8 @@ package com.example.ravenmargret.java2project1;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
@@ -66,6 +68,43 @@ public class WeatherTask extends AsyncTask<String, Void, ArrayList<Weather>>
         protected ArrayList<Weather> doInBackground(String... params)
         {
             String result = "";
+
+            try
+            {
+                ConnectivityManager manager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE); //Check network class
+                NetworkInfo network = manager.getActiveNetworkInfo();
+                if(network == null)
+                {
+                    //read(Context context);//Save data
+                }
+                else
+                {
+                    //WeatherTask myTask = new WeatherTask(getActivity(), this);
+                    WeatherTask myTask = new WeatherTask();
+
+                    //use spinner here
+                /*citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+                {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+                    {
+                        city.setText(spinnerArray.get(position).toString());
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent)
+                    {
+
+                    }
+                });*/
+                    //Move connect to Task
+                    myTask.execute("http://api.wunderground.com/api/7cba3eee76e99b48/forecast10day/q/NC/Charlotte.json");
+                }
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
 
             try
             {
