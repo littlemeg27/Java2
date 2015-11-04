@@ -37,7 +37,6 @@ public class WeatherTask extends AsyncTask<String, Void, ArrayList<Weather>>
     final String TAG = "API DEMO AsyncTask";
     ArrayList<Weather> weatherForecast = new ArrayList<Weather>();
     Context mContext;
-    //ArrayList<Weather> mObjects;
     ProgressDialog dialog;
     WeatherDataReceiver mReceiver;
 
@@ -62,12 +61,6 @@ public class WeatherTask extends AsyncTask<String, Void, ArrayList<Weather>>
             dialog.setMessage("Loading...");
             dialog.setTitle("Network Call");
             dialog.show();
-        }
-
-        @Override
-        protected ArrayList<Weather> doInBackground(String... params)
-        {
-            String result = "";
 
             try
             {
@@ -80,7 +73,7 @@ public class WeatherTask extends AsyncTask<String, Void, ArrayList<Weather>>
                 else
                 {
                     //WeatherTask myTask = new WeatherTask(getActivity(), this);
-                    WeatherTask myTask = new WeatherTask();
+                    WeatherTask myTask = new WeatherTask(mContext,this.mReceiver);
 
                     //use spinner here
                 /*citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
@@ -105,6 +98,12 @@ public class WeatherTask extends AsyncTask<String, Void, ArrayList<Weather>>
             {
                 e.printStackTrace();
             }
+        }
+
+        @Override
+        protected ArrayList<Weather> doInBackground(String... params)
+        {
+            String result = "";
 
             try
             {
