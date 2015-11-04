@@ -45,6 +45,47 @@ public class WeatherTask extends AsyncTask<String, Void, ArrayList<Weather>>
         this.mContext = mContext;
         dialog = new ProgressDialog(mContext);
         mReceiver = _receiver;
+
+        try
+        {
+            ConnectivityManager manager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE); //Check network class
+            NetworkInfo network = manager.getActiveNetworkInfo();
+            if(network == null)
+            {
+                WeatherUtil loadData = new WeatherUtil();
+                loadData.load(mContext);
+            }
+            else
+            {
+                //WeatherTask myTask = new WeatherTask(getActivity(), this);
+                WeatherTask myTask = new WeatherTask(mContext,this.mReceiver);
+
+                //use spinner here
+                /*citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+                {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+                    {
+                        city.setText(spinnerArray.get(position).toString());
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent)
+                    {
+
+                    }
+                });*/
+                //Move connect to Task
+                myTask.execute("http://api.wunderground.com/api/7cba3eee76e99b48/forecast10day/q/NC/Charlotte.json");
+
+                WeatherUtil saveData = new WeatherUtil();
+                saveData.save(weatherForecast,mContext);
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public interface WeatherDataReceiver
@@ -61,43 +102,6 @@ public class WeatherTask extends AsyncTask<String, Void, ArrayList<Weather>>
             dialog.setMessage("Loading...");
             dialog.setTitle("Network Call");
             dialog.show();
-
-            try
-            {
-                ConnectivityManager manager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE); //Check network class
-                NetworkInfo network = manager.getActiveNetworkInfo();
-                if(network == null)
-                {
-                    //read(Context context);//Save data
-                }
-                else
-                {
-                    //WeatherTask myTask = new WeatherTask(getActivity(), this);
-                    WeatherTask myTask = new WeatherTask(mContext,this.mReceiver);
-
-                    //use spinner here
-                /*citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-                {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-                    {
-                        city.setText(spinnerArray.get(position).toString());
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent)
-                    {
-
-                    }
-                });*/
-                    //Move connect to Task
-                    myTask.execute("http://api.wunderground.com/api/7cba3eee76e99b48/forecast10day/q/NC/Charlotte.json");
-                }
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
         }
 
         @Override

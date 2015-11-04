@@ -16,7 +16,8 @@ public class WeatherUtil
     public static void save(ArrayList<Weather> weathers, Context context)
     {
 
-        try {
+        try
+        {
             FileOutputStream fileOut = context.openFileOutput("test.txt", Context.MODE_PRIVATE);
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
             objectOut.writeObject(weathers);
@@ -30,7 +31,8 @@ public class WeatherUtil
 
     public static ArrayList<Weather> load(Context context)
     {
-        try {
+        try
+        {
             FileInputStream fileIn = context.openFileInput("test.txt");
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
             ArrayList<Weather> savedWeather = (ArrayList<Weather>)objectIn.readObject();
