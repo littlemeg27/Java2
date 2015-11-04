@@ -50,36 +50,16 @@ public class WeatherTask extends AsyncTask<String, Void, ArrayList<Weather>>
         {
             ConnectivityManager manager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE); //Check network class
             NetworkInfo network = manager.getActiveNetworkInfo();
-            if(network == null)
+            if(network !=null && network.isConnected())
             {
-                WeatherUtil loadData = new WeatherUtil();
-                loadData.load(mContext);
+                WeatherUtil saveData = new WeatherUtil();
+                saveData.save(weatherForecast, mContext);
             }
             else
             {
-                //WeatherTask myTask = new WeatherTask(getActivity(), this);
-                WeatherTask myTask = new WeatherTask(mContext,this.mReceiver);
-
-                //use spinner here
-                /*citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-                {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-                    {
-                        city.setText(spinnerArray.get(position).toString());
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent)
-                    {
-
-                    }
-                });*/
                 //Move connect to Task
-                myTask.execute("http://api.wunderground.com/api/7cba3eee76e99b48/forecast10day/q/NC/Charlotte.json");
-
-                WeatherUtil saveData = new WeatherUtil();
-                saveData.save(weatherForecast,mContext);
+                WeatherUtil loadData = new WeatherUtil();
+                loadData.load(mContext);
             }
         }
         catch (Exception e)
@@ -87,6 +67,8 @@ public class WeatherTask extends AsyncTask<String, Void, ArrayList<Weather>>
             e.printStackTrace();
         }
     }
+
+
 
     public interface WeatherDataReceiver
     {
