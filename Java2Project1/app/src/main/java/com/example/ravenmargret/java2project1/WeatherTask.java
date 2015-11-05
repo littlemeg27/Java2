@@ -68,8 +68,6 @@ public class WeatherTask extends AsyncTask<String, Void, ArrayList<Weather>>
         }
     }
 
-
-
     public interface WeatherDataReceiver
     {
         void receiveData(ArrayList<Weather> weatherForecast);
