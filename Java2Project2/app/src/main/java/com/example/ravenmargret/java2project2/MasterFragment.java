@@ -21,7 +21,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MasterFragment extends Fragment
+public class MasterFragment extends Fragment implements WeatherTask.WeatherDataReceiver
 {
 
     ArrayList<Weather> mObjects;
@@ -82,8 +82,32 @@ public class MasterFragment extends Fragment
         }
     }
 
+    @Override
+    public void onDetach()
+    {
+        super.onDetach();
+        mListener = null;
+    }
 
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id
+    {
+        super.onListItemClick(l, v, position, id);
 
+        if (null != mListener)
+        {
+            // Notify the active callbacks interface (the activity, if the
+            // fragment is attached to one) that an item has been selected.
+            Weather w = (Weather)getListAdapter().getItem(position);
+            mListener.onFragmentInteraction(w);
+        }
+    }
+
+    public interface OnFragmentInteractionListener //This method transfers data to the other fragment
+    {
+        // TODO: Update argument type and name
+        public void onFragmentInteraction(Weather weatherObject);
+    }
 }
 
 /*
