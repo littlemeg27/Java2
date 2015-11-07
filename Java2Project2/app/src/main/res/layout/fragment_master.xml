@@ -1,12 +1,15 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ravenmargret.java2project2.MasterFragment">
+    tools:context="com.example.ravenmargret.java2project2.MasterFragment"
+    android:background="#1919d2"
+    android:backgroundTint="#1919d2">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
-        android:background="#1919d2"
-        android:backgroundTint="#1919d2" />
 
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/weatherSpinner"
+        android:layout_gravity="center_horizontal|top" />
 </FrameLayout>

@@ -19,8 +19,6 @@ public class MainActivity extends ActionBarActivity implements MasterFragment.On
     //API key 7cba3eee76e99b48
     Context mContext;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import java.util.ArrayList;
 
@@ -28,13 +29,19 @@ public class MasterFragment extends Fragment implements WeatherTask.WeatherDataR
     private OnFragmentInteractionListener mListener;
     ArrayAdapter<String> spinnerAdapter;
     public static String fileName = "api.ser";
+    Spinner citySpinner;
+    Spinner weatherSpinner;
 
     @Override
     public void receiveData(ArrayList<Weather> weatherForecast)
     {
         //Get in weather data
-        //setListAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, weatherForecast));
+        //setListAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, weatherForecast));
         //Change above for
+
+        weatherSpinner = (Spinner) findViewById//findViewById(R.id.weatherSpinner);
+        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(MasterFragment.this, R.array.spinnerArray, android.R.layout.simple_dropdown_item_1line);
+        weatherSpinner.setAdapter(spinnerAdapter);
     }
 
     public MasterFragment()
@@ -46,7 +53,8 @@ public class MasterFragment extends Fragment implements WeatherTask.WeatherDataR
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_master, container, false);
     }
@@ -111,7 +119,6 @@ public class MasterFragment extends Fragment implements WeatherTask.WeatherDataR
 }
 
 /*
-
 public class MasterFragment extends ListFragment implements WeatherTask.WeatherDataReceiver
 {
     ArrayList<Weather> mObjects;
