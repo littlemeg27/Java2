@@ -12,6 +12,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -31,17 +32,20 @@ public class MasterFragment extends Fragment implements WeatherTask.WeatherDataR
     public static String fileName = "api.ser";
     Spinner citySpinner;
     Spinner weatherSpinner;
+    Activity activity;
 
     @Override
     public void receiveData(ArrayList<Weather> weatherForecast)
     {
         //Get in weather data
-        //setListAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, weatherForecast));
+        weatherSpinner = (Spinner)activity.findViewById(R.id.weatherSpinner);
+        ArrayAdapter spinnerAdapter = (new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, weatherForecast));
+        weatherSpinner.setAdapter(spinnerAdapter);
         //Change above for
 
-        weatherSpinner = (Spinner) findViewById//findViewById(R.id.weatherSpinner);
-        ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(MasterFragment.this, R.array.spinnerArray, android.R.layout.simple_dropdown_item_1line);
-        weatherSpinner.setAdapter(spinnerAdapter);
+        /*weatherSpinner = (Spinner) findViewById(R.id.weatherSpinner);
+        ArrayAdapter spinnerAdapter = ArrayAdapter.createFromResource(MasterFragment.this, R.array.spinnerArray, android.R.layout.simple_dropdown_item_1line);
+        weatherSpinner.setAdapter(spinnerAdapter);*/
     }
 
     public MasterFragment()
@@ -97,8 +101,8 @@ public class MasterFragment extends Fragment implements WeatherTask.WeatherDataR
         mListener = null;
     }
 
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id
+   /* @Override
+    public void onListItemClick(ListView l, View v, int position, long id)
     {
         super.onListItemClick(l, v, position, id);
 
@@ -109,6 +113,18 @@ public class MasterFragment extends Fragment implements WeatherTask.WeatherDataR
             Weather w = (Weather)getListAdapter().getItem(position);
             mListener.onFragmentInteraction(w);
         }
+    }*/
+
+    @Override
+    public void onItemSelected(AdapterView<?> l, View v, int position, long id)
+    {
+        if (null != mListener)
+        {
+            //nameOfVacation.setText(vacation.get(position).toString());
+            Weather w = (Weather)getListAdapter().getItem(position);
+            mListener.onFragmentInteraction(w);
+        }
+
     }
 
     public interface OnFragmentInteractionListener //This method transfers data to the other fragment
