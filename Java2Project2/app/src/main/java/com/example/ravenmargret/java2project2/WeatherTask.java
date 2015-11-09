@@ -85,26 +85,6 @@ public class WeatherTask extends AsyncTask<String, Void, ArrayList<Weather>>
             e.printStackTrace();
         }
 
-        try
-        {
-            ConnectivityManager manager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE); //Check network class
-            NetworkInfo network = manager.getActiveNetworkInfo();
-            if(network !=null && network.isConnected())
-            {
-                WeatherUtil saveData = new WeatherUtil();
-                saveData.save(weatherForecast, mContext);
-            }
-            else
-            {
-                //Move connect to Task
-                WeatherUtil loadData = new WeatherUtil();
-                loadData.load(mContext);
-            }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
 
         try
         {
@@ -135,6 +115,28 @@ public class WeatherTask extends AsyncTask<String, Void, ArrayList<Weather>>
             //Toast toast = Toast.makeText(MainActivity.this, "Something Happened", Toast.LENGTH_SHORT);
             //toast.show();
         }
+
+        try
+        {
+            ConnectivityManager manager = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE); //Check network class
+            NetworkInfo network = manager.getActiveNetworkInfo();
+            if(network !=null && network.isConnected())
+            {
+                WeatherUtil saveData = new WeatherUtil();
+                saveData.save(weatherForecast, mContext);
+            }
+            else
+            {
+                //Move connect to Task
+                WeatherUtil loadData = new WeatherUtil();
+                weatherForecast = loadData.load(mContext);
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
         return weatherForecast;
     }
 

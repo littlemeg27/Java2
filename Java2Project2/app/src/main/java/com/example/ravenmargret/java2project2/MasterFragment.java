@@ -23,7 +23,7 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MasterFragment extends Fragment implements WeatherTask.WeatherDataReceiver
+public class MasterFragment extends Fragment implements WeatherTask.WeatherDataReceiver, AdapterView.OnItemSelectedListener
 {
 
     ArrayList<Weather> mObjects;
@@ -32,25 +32,19 @@ public class MasterFragment extends Fragment implements WeatherTask.WeatherDataR
     public static String fileName = "api.ser";
     Spinner citySpinner;
     Spinner weatherSpinner;
-    Activity activity;
 
     @Override
     public void receiveData(ArrayList<Weather> weatherForecast)
     {
         //Get in weather data
-        weatherSpinner = (Spinner)activity.findViewById(R.id.weatherSpinner);
+        weatherSpinner = (Spinner)getView().findViewById(R.id.weatherSpinner); //Get view for spinner
+        weatherSpinner.setOnItemSelectedListener(this); //set the listener to the weather spinner
         ArrayAdapter spinnerAdapter = (new ArrayAdapter<>(getActivity(), android.R.layout.simple_dropdown_item_1line, weatherForecast));
         weatherSpinner.setAdapter(spinnerAdapter);
-        //Change above for
-
-        /*weatherSpinner = (Spinner) findViewById(R.id.weatherSpinner);
-        ArrayAdapter spinnerAdapter = ArrayAdapter.createFromResource(MasterFragment.this, R.array.spinnerArray, android.R.layout.simple_dropdown_item_1line);
-        weatherSpinner.setAdapter(spinnerAdapter);*/
     }
 
     public MasterFragment()
     {
-
         // Required empty public constructor
     }
 
@@ -101,30 +95,21 @@ public class MasterFragment extends Fragment implements WeatherTask.WeatherDataR
         mListener = null;
     }
 
-   /* @Override
-    public void onListItemClick(ListView l, View v, int position, long id)
-    {
-        super.onListItemClick(l, v, position, id);
-
-        if (null != mListener)
-        {
-            // Notify the active callbacks interface (the activity, if the
-            // fragment is attached to one) that an item has been selected.
-            Weather w = (Weather)getListAdapter().getItem(position);
-            mListener.onFragmentInteraction(w);
-        }
-    }*/
-
     @Override
     public void onItemSelected(AdapterView<?> l, View v, int position, long id)
     {
         if (null != mListener)
         {
-            //nameOfVacation.setText(vacation.get(position).toString());
-            Weather w = (Weather)getListAdapter().getItem(position);
+            Weather w = (Weather)weatherSpinner.getAdapter().getItem(position);
             mListener.onFragmentInteraction(w);
         }
 
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent)
+    {
+        //Useless but needed
     }
 
     public interface OnFragmentInteractionListener //This method transfers data to the other fragment
@@ -133,83 +118,3 @@ public class MasterFragment extends Fragment implements WeatherTask.WeatherDataR
         public void onFragmentInteraction(Weather weatherObject);
     }
 }
-
-/*
-public class MasterFragment extends ListFragment implements WeatherTask.WeatherDataReceiver
-{
-    ArrayList<Weather> mObjects;
-    private OnFragmentInteractionListener mListener;
-    Spinner citySpinner;
-    ArrayAdapter<String> spinnerAdapter;
-    public static String fileName = "api.ser";
-
-    @Override
-    public void receiveData(ArrayList<Weather> weatherForecast)
-    {
-        //Get in weather data
-        setListAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, weatherForecast));
-    }
-
-
-    @Override
-    public void onAttach(Activity activity)
-    {
-        super.onAttach(activity);
-        try
-        {
-            mListener = (OnFragmentInteractionListener) activity;
-        }
-        catch (ClassCastException e)
-        {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState)
-    {
-        super.onActivityCreated(savedInstanceState);
-
-        try
-        {
-            WeatherTask myTask = new WeatherTask(getActivity(), this);
-            myTask.execute("http://api.wunderground.com/api/7cba3eee76e99b48/forecast10day/q/NC/Charlotte.json");
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void onDetach()
-    {
-        super.onDetach();
-        mListener = null;
-    }
-
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id)
-    {
-        super.onListItemClick(l, v, position, id);
-
-        if (null != mListener)
-        {
-            // Notify the active callbacks interface (the activity, if the
-            // fragment is attached to one) that an item has been selected.
-            Weather w = (Weather)getListAdapter().getItem(position);
-            mListener.onFragmentInteraction(w);
-        }
-    }
-
-
-public interface OnFragmentInteractionListener //This method transfers data to the other fragment
-{
-    // TODO: Update argument type and name
-    public void onFragmentInteraction(Weather weatherObject);
-}
-}
- */
