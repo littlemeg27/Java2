@@ -4,21 +4,35 @@
 
 package com.example.ravenmargret.java2project3;
 
+import android.app.FragmentManager;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+
 
 public class MainActivity extends ActionBarActivity
 {
+    Context mContext;
+    FragmentManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mContext = this;
+        manager = getFragmentManager();
+
+        MainFragment mainFragment = new MainFragment();
+        showMainFragment(mainFragment);
     }
 
+    private void showMainFragment(Fragment mainFrag)
+    {
+        manager.beginTransaction().add(R.id.).commit();
+    }
     /*@Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
