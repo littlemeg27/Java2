@@ -1,3 +1,7 @@
+/**
+ * Created by Brenna Pavlinchak on 11/9/15.
+ */
+
 package com.example.ravenmargret.java2project3;
 
 
@@ -11,11 +15,11 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainFragment extends Fragment
+public class FormFragment extends Fragment
 {
 
 
-    public MainFragment()
+    public FormFragment()
     {
         // Required empty public constructor
     }
@@ -23,10 +27,9 @@ public class MainFragment extends Fragment
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState)
-    {
+                             Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        return inflater.inflate(R.layout.fragment_form, container, false);
     }
 
 

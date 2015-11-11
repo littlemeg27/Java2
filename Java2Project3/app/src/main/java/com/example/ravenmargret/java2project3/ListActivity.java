@@ -1,33 +1,32 @@
-/**
- * Created by Brenna Pavlinchak on 11/9/15.
- */
-
 package com.example.ravenmargret.java2project3;
 
 import android.app.FragmentManager;
 import android.content.Context;
-import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.widget.Button;
-import android.view.View;
 
 public class ListActivity extends ActionBarActivity
 {
-    Context mContext;
     FragmentManager manager;
+    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+
+        mContext = this;
+        manager = getFragmentManager();
+
+        DetailFragment listFragment = new DetailFragment();
+        showListFragment(listFragment);
     }
 
-    private void showMainFragment(Fragment mainFrag)
+    private void showListFragment(Fragment listFrag)
     {
-        manager.beginTransaction().add(R.id.container, mainFrag).commit();
+        manager.beginTransaction().add(R.id.container.listFrag).commit();
     }
 
 }
