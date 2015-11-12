@@ -4,15 +4,15 @@
 
 package com.example.ravenmargret.java2project3;
 
+import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class FormActivity extends ActionBarActivity
+public class FormActivity extends Activity
 {
     FragmentManager manager;
     Context mContext;
@@ -32,6 +32,6 @@ public class FormActivity extends ActionBarActivity
 
     private void showFormFragment(Fragment formFrag)
     {
-        manager.beginTransaction().add(R.id.container.formFrag).commit();
+        manager.beginTransaction().add(R.id.container, formFrag).commit();
     }
 }

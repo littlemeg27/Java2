@@ -4,13 +4,13 @@
 
 package com.example.ravenmargret.java2project3;
 
+import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 
-public class DetailActivity extends ActionBarActivity
+public class DetailActivity extends Activity
 {
     FragmentManager manager;
     Context mContext;
@@ -30,6 +30,6 @@ public class DetailActivity extends ActionBarActivity
 
     private void showDetailFragment(Fragment detailFrag)
     {
-        manager.beginTransaction().add(R.id.container.detailFrag).commit();
+        manager.beginTransaction().add(R.id.container, detailFrag).commit();
     }
 }

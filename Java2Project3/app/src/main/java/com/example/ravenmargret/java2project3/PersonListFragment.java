@@ -9,22 +9,17 @@ import android.widget.ListView;
 
 import com.example.ravenmargret.java2project3.dummy.DummyContent;
 
-/**
- * A fragment representing a list of Items.
- * <p/>
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnFragmentInteractionListener}
- * interface.
- */
-public class ListFragment extends ListFragment {
 
-    private OnFragmentInteractionListener mListener;
+public class PersonListFragment extends ListFragment
+{
+
+//    private OnFragmentInteractionListener mListener;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ListFragment() {
+    public PersonListFragment() {
     }
 
     @Override
@@ -41,29 +36,29 @@ public class ListFragment extends ListFragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        try {
+        /*try {
             mListener = (OnFragmentInteractionListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
-        }
+        }*/
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+        //mListener = null;
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        if (null != mListener) {
+        //if (null != mListener) {
             // Notify the active callbacks interface (the activity, if the
             // fragment is attached to one) that an item has been selected.
-            mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
-        }
+            //mListener.onFragmentInteraction(DummyContent.ITEMS.get(position).id);
+        //}
     }
 
     /**
@@ -76,9 +71,9 @@ public class ListFragment extends ListFragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    /*public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(String id);
-    }
+    }*/
 
 }
