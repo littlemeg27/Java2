@@ -30,6 +30,6 @@ public class DetailActivity extends Activity
 
     private void showDetailFragment(Fragment detailFrag)
     {
-        manager.beginTransaction().add(R.id.container, detailFrag).commit();
+        manager.beginTransaction().replace(R.id.container, detailFrag).commit();
     }
 }

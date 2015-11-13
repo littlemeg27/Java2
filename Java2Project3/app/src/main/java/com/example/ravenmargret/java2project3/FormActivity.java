@@ -32,6 +32,6 @@ public class FormActivity extends Activity
 
     private void showFormFragment(Fragment formFrag)
     {
-        manager.beginTransaction().add(R.id.container, formFrag).commit();
+        manager.beginTransaction().replace(R.id.container, formFrag).commit();
     }
 }
