@@ -82,9 +82,9 @@ public class FormFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View v)
     {
-        String phone = mFirstName.getText().toString();
-        String phone = mLastName.getText().toString();
-        String phone = mAge.getText().toString();
+        String firstName = mFirstName.getText().toString();
+        String lastName = mLastName.getText().toString();
+        String age = mAge.getText().toString();
 
         String result = "";
         Log.e("It did something",result);
