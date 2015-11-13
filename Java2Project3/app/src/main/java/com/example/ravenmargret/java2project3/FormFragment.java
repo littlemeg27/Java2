@@ -18,18 +18,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class FormFragment extends Fragment implements View.OnClickListener
 {
-    private OnFragmentInteractionListener mListener;
+    ArrayList<Form> formList = new ArrayList<Form>();
     Button saveButton;
     EditText firstNameText;
     EditText lastNameText;
     EditText ageText;
 
-    public interface contactDetails
-    {
-        public void receiveData(String _firstName, String _lastName, String _age);
-    }
+        //public void receiveData(String _firstName, String _lastName, String _age);
+
 
     public FormFragment()
     {
@@ -43,27 +43,6 @@ public class FormFragment extends Fragment implements View.OnClickListener
     {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_form, container, false);
-    }
-
-    public void onAttach(Activity activity)
-    {
-        super.onAttach(activity);
-        try
-        {
-            mListener = (OnFragmentInteractionListener) activity;
-        }
-        catch (ClassCastException e)
-        {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach()
-    {
-        super.onDetach();
-        mListener = null;
     }
 
     @Override
@@ -82,18 +61,18 @@ public class FormFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View v)
     {
-        String firstName = mFirstName.getText().toString();
-        String lastName = mLastName.getText().toString();
-        String age = mAge.getText().toString();
+        String firstName = firstNameText.getText().toString();
+        String lastName = lastNameText.getText().toString();
+        String age = ageText.getText().toString();
+
+        Toast.makeText(getActivity(), "Contact Added", Toast.LENGTH_LONG).show();
 
         String result = "";
-        Log.e("It did something",result);
+        Log.e("It did something", result);
 
-    }
-
-    public interface OnFragmentInteractionListener //This method transfers data to the other fragment
-    {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(Form weatherObject);
+        formList.add(new Form(firstName, lastName, age));
+        Log.e("Form age", firstName);
+        Log.e("Form age", lastName);
+        Log.e("Form age", age);
     }
 }
