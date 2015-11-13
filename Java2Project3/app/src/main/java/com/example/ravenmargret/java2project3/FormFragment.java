@@ -22,7 +22,6 @@ import java.util.ArrayList;
 
 public class FormFragment extends Fragment implements View.OnClickListener
 {
-    ArrayList<Form> formList = new ArrayList<Form>();
     Button saveButton;
     EditText firstNameText;
     EditText lastNameText;
@@ -35,7 +34,6 @@ public class FormFragment extends Fragment implements View.OnClickListener
     {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,12 +65,9 @@ public class FormFragment extends Fragment implements View.OnClickListener
 
         Toast.makeText(getActivity(), "Contact Added", Toast.LENGTH_LONG).show();
 
-        String result = "";
-        Log.e("It did something", result);
+        Form form = new Form(firstName, lastName, age);
+        FormUtil.save(form, getActivity());
 
-        formList.add(new Form(firstName, lastName, age));
-        Log.e("Form age", firstName);
-        Log.e("Form age", lastName);
-        Log.e("Form age", age);
+        getActivity().finish();
     }
 }

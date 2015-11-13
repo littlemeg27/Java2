@@ -16,7 +16,6 @@ public class FormUtil
 {
     public static void save(ArrayList<Form> forms, Context context)
     {
-
         try
         {
             FileOutputStream fileOut = context.openFileOutput("test.txt", Context.MODE_PRIVATE);
@@ -46,5 +45,16 @@ public class FormUtil
         }
 
         return null;
+    }
+
+    public static void save(Form form, Context context) //Saving one item at a time
+    {
+        ArrayList<Form> loadedItem = load(context);
+        if (loadedItem == null)
+        {
+            loadedItem = new ArrayList<>();
+        }
+        loadedItem.add(form);
+        save(loadedItem, context);
     }
 }

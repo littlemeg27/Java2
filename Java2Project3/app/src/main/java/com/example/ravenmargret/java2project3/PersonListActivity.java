@@ -48,5 +48,6 @@ public class PersonListActivity extends Activity implements View.OnClickListener
     {
         super.onActivityResult(requestCode, resultCode, data);
         //Refresh list here
+        //Find person list frag call load data to update list
     }
 }
