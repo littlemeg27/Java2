@@ -5,6 +5,7 @@
 package com.example.ravenmargret.java2project3;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 public class FormFragment extends Fragment implements View.OnClickListener
 {
+    private OnFragmentInteractionListener mListener;
     Button saveButton;
     EditText firstNameText;
     EditText lastNameText;
@@ -41,6 +43,27 @@ public class FormFragment extends Fragment implements View.OnClickListener
     {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_form, container, false);
+    }
+
+    public void onAttach(Activity activity)
+    {
+        super.onAttach(activity);
+        try
+        {
+            mListener = (OnFragmentInteractionListener) activity;
+        }
+        catch (ClassCastException e)
+        {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach()
+    {
+        super.onDetach();
+        mListener = null;
     }
 
     @Override
@@ -66,5 +89,11 @@ public class FormFragment extends Fragment implements View.OnClickListener
         String result = "";
         Log.e("It did something",result);
 
+    }
+
+    public interface OnFragmentInteractionListener //This method transfers data to the other fragment
+    {
+        // TODO: Update argument type and name
+        public void onFragmentInteraction(Form weatherObject);
     }
 }
