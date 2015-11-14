@@ -70,9 +70,9 @@ public class PersonListActivity extends Activity implements View.OnClickListener
     {
         Bundle extras = new Bundle();
         extras.putAll(extras);
-        Intent intent = new Intent(this, DetailFragment.class);
+        Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtras(extras);
-        startActivityForResult(intent, 27272727);
+        startActivityForResult(intent, 45454545);
     }
 
 //
