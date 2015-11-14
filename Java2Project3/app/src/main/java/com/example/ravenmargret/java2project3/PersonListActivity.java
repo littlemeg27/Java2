@@ -12,7 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class PersonListActivity extends Activity implements View.OnClickListener
+public class PersonListActivity extends Activity implements View.OnClickListener, PersonListFragment.OnFragmentInteractionListener
 {
     FragmentManager manager;
 
@@ -52,4 +52,34 @@ public class PersonListActivity extends Activity implements View.OnClickListener
         PersonListFragment fragment = (PersonListFragment) getFragmentManager().findFragmentById(R.id.container); //Re call the entire frag
         fragment.loadData(); //Call the method inside the frag
     }   //I find this a really weird way to do things but if it works it works
+
+
+        //Create new details fragment, pass weather object to details frag add details frag to layout
+        //Dont do what is shown its wrong
+
+//        DetailFragment detailFragment = new DetailFragment(); //Creating details fragment
+//
+//        Bundle args = new Bundle();
+//        args.putSerializable(DetailFragment.WEATHERKEY, weatherObject);
+//        detailFragment.setArguments(args);
+//
+//        showDetailFragment(detailFragment); //Make Detail frag show
+
+    @Override
+    public void onFragmentInteraction(Form formObject)
+    {
+        Bundle extras = new Bundle();
+        extras.putAll(extras);
+        Intent intent = new Intent(this, DetailFragment.class);
+        intent.putExtras(extras);
+        startActivityForResult(intent, 27272727);
+    }
+
+//
+//
+//    extras.putString("Name", "John Smith");
+//    extras.putInt("Age", 21);
+//    Intent intent = new Intent(this, NextActivity.class);
+//    intent.putExtras(extras);
+//    startActivityForResult(intent, REQUEST_NEXT);
 }

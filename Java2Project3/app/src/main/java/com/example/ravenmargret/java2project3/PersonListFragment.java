@@ -7,13 +7,13 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.ravenmargret.java2project3.dummy.DummyContent;
-
 import java.util.ArrayList;
 
 
 public class PersonListFragment extends ListFragment
 {
+    private OnFragmentInteractionListener mListener;
+
     public PersonListFragment()
     {
 
@@ -24,6 +24,15 @@ public class PersonListFragment extends ListFragment
     {
         super.onAttach(activity);
 
+        try
+        {
+            mListener = (OnFragmentInteractionListener) activity;
+        }
+        catch (ClassCastException e)
+        {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
     }
 
     @Override
@@ -37,7 +46,8 @@ public class PersonListFragment extends ListFragment
     public void onListItemClick(ListView l, View v, int position, long id)
     {
         super.onListItemClick(l, v, position, id);
-        Form f = (Form)getListAdapter().getItem(position);
+        Form f = (Form) getListAdapter().getItem(position);
+        mListener.onFragmentInteraction(f);
     }
 
     public void loadData()
@@ -45,5 +55,11 @@ public class PersonListFragment extends ListFragment
         ArrayList<Form> formObject = FormUtil.load(getActivity());
         ArrayAdapter<Form> formArrayAdapter = new ArrayAdapter<Form>(getActivity(), android.R.layout.simple_list_item_1, formObject);
         setListAdapter(formArrayAdapter);
+    }
+
+    public interface OnFragmentInteractionListener //This method transfers data to the other fragment
+    {
+        // TODO: Update argument type and name
+        public void onFragmentInteraction(Form formObject);
     }
 }
