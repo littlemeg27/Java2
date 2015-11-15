@@ -1,3 +1,7 @@
+/**
+ * Created by Brenna Pavlinchak on 11/11/15.
+ */
+
 package com.example.ravenmargret.java2project3;
 
 
@@ -6,21 +10,24 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetailFragment extends Fragment
+public class DetailFragment extends Fragment implements View.OnClickListener
 {
     public static final String KEY = "PersonKey";
+    Button deletePersonButton;
 
     public DetailFragment()
     {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,6 +35,15 @@ public class DetailFragment extends Fragment
     {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_detail, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState)
+    {
+        super.onActivityCreated(savedInstanceState);
+
+        deletePersonButton = (Button)getView().findViewById(R.id.deletePersonButton);
+        deletePersonButton.setOnClickListener(this);
     }
 
     @Override
@@ -53,5 +69,17 @@ public class DetailFragment extends Fragment
 
         TextView metricForecastTextView = (TextView) getActivity().findViewById(R.id.ageTextView);
         metricForecastTextView.setText(object.getmAge());
+    }
+
+    @Override
+    public void onClick(View v)
+    {
+        Toast.makeText(getActivity(), "Contact Deleted", Toast.LENGTH_LONG).show();
+
+//        Form form = new Form(firstName, lastName, age);
+//        FormUtil.delete(form, getActivity());
+        //Tried to add delete button, ran out of time to finish dealing with the call for it resets just isnt deleting
+
+        getActivity().finish();
     }
 }

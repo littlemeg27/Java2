@@ -27,9 +27,6 @@ public class FormFragment extends Fragment implements View.OnClickListener
     EditText lastNameText;
     EditText ageText;
 
-        //public void receiveData(String _firstName, String _lastName, String _age);
-
-
     public FormFragment()
     {
         // Required empty public constructor

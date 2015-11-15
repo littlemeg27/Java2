@@ -57,4 +57,15 @@ public class FormUtil
         loadedItem.add(form);
         save(loadedItem, context);
     }
+
+    public static void delete(Form form, Context context) //Delete one item at a time
+    {
+        ArrayList<Form> loadedItem = load(context);
+        if (loadedItem == null)
+        {
+            loadedItem = new ArrayList<>();
+        }
+        loadedItem.remove(form);
+        save(loadedItem, context);
+    }
 }
