@@ -8,12 +8,14 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 public class DetailActivity extends Activity
 {
     FragmentManager manager;
-    Context mContext;
+    public static final String PERSONKEY = "thePersonKey";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -21,11 +23,15 @@ public class DetailActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        mContext = this;
         manager = getFragmentManager();
 
         DetailFragment detailFragment = new DetailFragment();
         showDetailFragment(detailFragment);
+
+        Intent callingIntent = getIntent();
+        callingIntent.getSerializableExtra(PERSONKEY);
+        //Log.e("Intent open:", );
+
     }
 
     private void showDetailFragment(Fragment detailFrag)

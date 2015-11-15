@@ -60,6 +60,6 @@ public class PersonListFragment extends ListFragment
     public interface OnFragmentInteractionListener //This method transfers data to the other fragment
     {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(Form formObject);
+        void onFragmentInteraction(Form formObject);
     }
 }

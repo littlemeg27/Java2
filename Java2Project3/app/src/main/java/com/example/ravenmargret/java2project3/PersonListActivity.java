@@ -69,17 +69,9 @@ public class PersonListActivity extends Activity implements View.OnClickListener
     public void onFragmentInteraction(Form formObject)
     {
         Bundle extras = new Bundle();
-        extras.putAll(extras);
+        extras.putSerializable(DetailActivity.PERSONKEY, formObject);
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtras(extras);
         startActivityForResult(intent, 45454545);
     }
-
-//
-//
-//    extras.putString("Name", "John Smith");
-//    extras.putInt("Age", 21);
-//    Intent intent = new Intent(this, NextActivity.class);
-//    intent.putExtras(extras);
-//    startActivityForResult(intent, REQUEST_NEXT);
 }
