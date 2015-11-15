@@ -29,13 +29,27 @@ public class DetailActivity extends Activity
         showDetailFragment(detailFragment);
 
         Intent callingIntent = getIntent();
-        callingIntent.getSerializableExtra(PERSONKEY);
-        //Log.e("Intent open:", );
+        Form object = (Form)callingIntent.getSerializableExtra(PERSONKEY);
+//        Log.e("Intent open:", Form.object);
+
+        Bundle args = new Bundle();
+        args.putSerializable(DetailFragment.KEY, object);
+        detailFragment.setArguments(args);
 
     }
 
     private void showDetailFragment(Fragment detailFrag)
     {
         manager.beginTransaction().replace(R.id.container, detailFrag).commit();
+    }
+
+    public void sendText() //Trying to do the send out, not going so well
+    {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("*/*");
+        if (intent.resolveActivity(getPackageManager()) != null)
+        {
+            startActivity(intent);
+        }
     }
 }
