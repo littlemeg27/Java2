@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.ravenmargret.java2project4b" >
+
+    <permission android:name="com.company.android.provider.ACCESS_DATA"
+        android:protectionLevel="dangerous" />
+
+    <provider android:name=".MyProvider"
+        android:authorities="com.company.android.provider"
+        android:enabled="true"
+        android:exported="true"
+        android:permission="com.company.android.provider.ACCESS_DATA" >
+    </provider>
+
+    <uses-permission android:name="com.company.android.provider.ACCESS_DATA" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" ></application>
+
+</manifest>
