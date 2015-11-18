@@ -45,6 +45,7 @@ public class PersonListFragment extends ListFragment
     public void onActivityCreated(Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
+        
         if(formObject == null)
         {
             Toast.makeText(getActivity(), "The list is empty", Toast.LENGTH_LONG).show();
