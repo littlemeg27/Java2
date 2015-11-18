@@ -1,3 +1,7 @@
+/**
+ * Created by Brenna Pavlinchak on 11/17/15.
+ */
+
 package com.example.ravenmargret.java2project4a;
 
 import android.app.Activity;
