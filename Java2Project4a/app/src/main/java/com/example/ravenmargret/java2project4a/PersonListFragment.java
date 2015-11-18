@@ -10,12 +10,14 @@ import android.app.ListFragment;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 public class PersonListFragment extends ListFragment
 {
     private OnFragmentInteractionListener mListener;
+    ArrayList<Form> formObject;
 
     public PersonListFragment()
     {
@@ -42,7 +44,14 @@ public class PersonListFragment extends ListFragment
     public void onActivityCreated(Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
-        loadData();
+        if(formObject == null)
+        {
+            Toast.makeText(getActivity(), "The list is empty", Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            loadData();
+        }
     }
 
     @Override
@@ -55,7 +64,7 @@ public class PersonListFragment extends ListFragment
 
     public void loadData()
     {
-        ArrayList<Form> formObject = FormUtil.load(getActivity());
+        formObject = FormUtil.load(getActivity());
         ArrayAdapter<Form> formArrayAdapter = new ArrayAdapter<Form>(getActivity(), android.R.layout.simple_list_item_1, formObject);
         setListAdapter(formArrayAdapter);
     }

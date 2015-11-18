@@ -32,19 +32,22 @@ public class PersonListActivity extends Activity implements View.OnClickListener
         findViewById(R.id.addPersonButton).setOnClickListener(this);
     }
 
-    private void showListFragment(Fragment listFrag) {
+    private void showListFragment(Fragment listFrag)
+    {
         manager.beginTransaction().replace(R.id.container, listFrag).commit();
     }
 
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v)
+    {
         Intent nextActivity = new Intent(this, FormActivity.class);
         startActivityForResult(nextActivity, 27272727);
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
         super.onActivityResult(requestCode, resultCode, data);
         //Refresh list here
         //Find person list frag call load data to update list
@@ -53,7 +56,8 @@ public class PersonListActivity extends Activity implements View.OnClickListener
     }   //I find this a really weird way to do things but if it works it works
 
     @Override
-    public void onFragmentInteraction(Form formObject) {
+    public void onFragmentInteraction(Form formObject)
+    {
         Bundle extras = new Bundle();
         extras.putSerializable(DetailActivity.PERSONKEY, formObject);
         Intent intent = new Intent(this, DetailActivity.class);

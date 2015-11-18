@@ -15,10 +15,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class DetailFragment extends Fragment implements View.OnClickListener
 {
     public static final String KEY = "PersonKey";
@@ -76,10 +75,14 @@ public class DetailFragment extends Fragment implements View.OnClickListener
     {
         Toast.makeText(getActivity(), "Contact Deleted", Toast.LENGTH_LONG).show();
 
+        //Form form;
+        //FormUtil.delete(form, getActivity());
+
 //        Form form = new Form(firstName, lastName, age);
 //        FormUtil.delete(form, getActivity());
         //Tried to add delete button, ran out of time to finish dealing with the call for it resets just isnt deleting
 
         getActivity().finish();
     }
+
 }

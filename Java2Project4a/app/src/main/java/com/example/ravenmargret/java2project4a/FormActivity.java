@@ -14,7 +14,6 @@ import android.support.v7.app.ActionBarActivity;
 public class FormActivity extends Activity
 {
     FragmentManager manager;
-    Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -22,7 +21,6 @@ public class FormActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
 
-        mContext = this;
         manager = getFragmentManager();
 
         FormFragment formFragment = new FormFragment();
