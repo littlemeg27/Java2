@@ -1,17 +1,20 @@
 /**
- * Created by Brenna Pavlinchak on 11/17/15.
+ * Created by Brenna Pavlinchak on 11/19/15.
  */
 
-package com.example.ravenmargret.java2project4b;
+package com.example.ravenmargret.java2project4a;
 
+import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 
-public class ContentProvider extends android.content.ContentProvider
-{
 
+public class CRUDProvider extends ContentProvider
+{
+    private static final String AUTHORITY = "com.example.ravenmargret.java2project4a.CRUDProvider";
+    private static final String BASE_DATA =
     @Override
     public boolean onCreate()
     {
