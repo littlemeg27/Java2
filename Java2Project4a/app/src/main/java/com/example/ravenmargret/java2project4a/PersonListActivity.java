@@ -7,11 +7,14 @@ package com.example.ravenmargret.java2project4a;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +36,8 @@ public class PersonListActivity extends Activity implements View.OnClickListener
 
         findViewById(R.id.addPersonButton).setOnClickListener(this);
     }
+
+
 
     private void showListFragment(Fragment listFrag)
     {

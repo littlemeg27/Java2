@@ -5,11 +5,17 @@
 package com.example.ravenmargret.java2project4a;
 
 import android.app.Activity;
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.ListFragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CursorAdapter;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -23,6 +29,8 @@ public class PersonListFragment extends ListFragment
     {
 
     }
+
+
 
     @Override
     public void onAttach(Activity activity)
@@ -45,6 +53,12 @@ public class PersonListFragment extends ListFragment
     {
         super.onActivityCreated(savedInstanceState);
 
+        Cursor cursor = getContentResolver().query(CRUDProvider.CONTENT_URI, DatabaseSyncer.ALL, null, null, null);
+
+        String[] from = {DatabaseSyncer.FIRST_NAME};
+        int[] to = {android.R.id.text1};
+        CursorAdapter adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, cursor,from, to, 0);
+
         if(formObject == null)
         {
             Toast.makeText(getActivity(), "The list is empty", Toast.LENGTH_LONG).show();
@@ -52,7 +66,18 @@ public class PersonListFragment extends ListFragment
         else
         {
             loadData();
+            addCrud();
         }
+    }
+
+    private void addCrud()
+    {
+        ContentValues values = new ContentValues();
+        values.put(DatabaseSyncer.FIRST_NAME, "First Name");
+        values.put(DatabaseSyncer.LAST_NAME, "Last Name");
+        values.put(DatabaseSyncer.AGE, "Age");
+        Uri crudUri = getContentResolver().insert(CRUDProvider.CONTENT_URI, values);
+        Log.e("Main", "TESTING" + crudUri.getLastPathSegment());
     }
 
     @Override
