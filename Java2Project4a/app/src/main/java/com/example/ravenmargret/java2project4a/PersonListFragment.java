@@ -57,7 +57,7 @@ public class PersonListFragment extends ListFragment
 
         String[] from = {DatabaseSyncer.FIRST_NAME};
         int[] to = {android.R.id.text1};
-        CursorAdapter adapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, cursor,from, to, 0);
+        CursorAdapter adapter = new SimpleCursorAdapter(getActivity(), android.R.layout.simple_list_item_1, cursor,from, to, 0);
 
         if(formObject == null)
         {
