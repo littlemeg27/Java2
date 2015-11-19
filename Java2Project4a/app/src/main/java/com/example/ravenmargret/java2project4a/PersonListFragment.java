@@ -66,19 +66,10 @@ public class PersonListFragment extends ListFragment
         else
         {
             loadData();
-            addCrud();
         }
     }
 
-    private void addCrud()
-    {
-        ContentValues values = new ContentValues();
-        values.put(DatabaseSyncer.FIRST_NAME, "First Name");
-        values.put(DatabaseSyncer.LAST_NAME, "Last Name");
-        values.put(DatabaseSyncer.AGE, "Age");
-        Uri crudUri = getContentResolver().insert(CRUDProvider.CONTENT_URI, values);
-        Log.e("Main", "TESTING" + crudUri.getLastPathSegment());
-    }
+
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id)

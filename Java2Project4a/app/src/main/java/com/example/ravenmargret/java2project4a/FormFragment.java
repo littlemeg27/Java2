@@ -4,8 +4,11 @@
 
 package com.example.ravenmargret.java2project4a;
 
+import android.content.ContentValues;
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,10 +37,21 @@ public class FormFragment extends Fragment implements View.OnClickListener
         return inflater.inflate(R.layout.fragment_form, container, false);
     }
 
+    private void addCrud()
+    {
+        ContentValues values = new ContentValues();
+        values.put(DatabaseSyncer.FIRST_NAME, "First Name");
+        values.put(DatabaseSyncer.LAST_NAME, "Last Name");
+        values.put(DatabaseSyncer.AGE, "Age");
+        Uri crudUri = getContentResolver().insert(CRUDProvider.CONTENT_URI, values);
+        Log.e("Main", "TESTING" + crudUri.getLastPathSegment());
+    }
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
+        addCrud();
 
         firstNameText = (EditText)getView().findViewById(R.id.firstNameText);
         lastNameText = (EditText)getView().findViewById(R.id.lastNameText);
