@@ -25,6 +25,13 @@
             android:name=".DetailActivity"
             android:label="@string/title_activity_detail" >
         </activity>
+
+        <provider android:name=".CRUDProvider"
+            android:authorities="com.example.ravenmargret.java2project4a.CRUDProvider"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="com.company.android.provider.ACCESS_DATA" >
+        </provider>
     </application>
 
 </manifest>

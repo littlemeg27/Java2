@@ -13,16 +13,25 @@ public class DatabaseSyncer extends SQLiteOpenHelper
 {
     private static final String DATABASE_FILE = "database.db";
     private static final int DATABASE_VERSION = 1;
-    private static final String CREATE_TABLE = "CREATE TABLE IF IT DOES NOT EXIST example (" + "_id INTEGER PRIMARY AUTOINCREMENT, some_text TEXT)"; //Dont understand what hit is doing make sure to ask
 
-//    public DatabaseSyncer(Context context, String name, SQLiteDatabase.CursorFactory factory, int version)
-//    {
-//        super(context, name, factory, version);
-//    }
+    public static final String CRUD_TABLE = "Crud";
+    public static final String ID = "_id"; //Constants for table and columns
+    public static final String FIRST_NAME = "firstName";
+    public static final String LAST_NAME = "lastName";
+    public static final String AGE = "age";
 
-    public DatabaseSyncer(Context c)
+    private static final String CREATE_TABLE = "CREATE TABLE " + CRUD_TABLE + "(" +
+                                ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                                FIRST_NAME + "FIRST NAME" +
+                                LAST_NAME + "LAST NAME " +
+                                AGE + " AGE " + ")";
+
+    public static final String[] ALL = {ID, FIRST_NAME, LAST_NAME, AGE};
+
+
+    public DatabaseSyncer(Context context)
     {
-        super(c, DATABASE_FILE, null, DATABASE_VERSION);
+        super(context, DATABASE_FILE, null, DATABASE_VERSION);
     }
 
     @Override
@@ -35,5 +44,7 @@ public class DatabaseSyncer extends SQLiteOpenHelper
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {
         //Handle the upgrades
+        db.execSQL("DROP TABLE IF EXISTS " + CRUD_TABLE);
+        onCreate(db);
     }
 }

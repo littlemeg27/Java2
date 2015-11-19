@@ -32,9 +32,6 @@ public class PersonListActivity extends Activity implements View.OnClickListener
         showListFragment(listFragment);
 
         findViewById(R.id.addPersonButton).setOnClickListener(this);
-
-        DatabaseSyncer sync = new DatabaseSyncer(this);
-        SQLiteDatabase database = sync.getWritableDatabase();
     }
 
     private void showListFragment(Fragment listFrag)
