@@ -15,6 +15,11 @@ public class DatabaseSyncer extends SQLiteOpenHelper
     private static final int DATABASE_VERSION = 1;
     private static final String CREATE_TABLE = "CREATE TABLE IF IT DOES NOT EXIST example (" + "_id INTEGER PRIMARY AUTOINCREMENT, some_text TEXT)"; //Dont understand what hit is doing make sure to ask
 
+//    public DatabaseSyncer(Context context, String name, SQLiteDatabase.CursorFactory factory, int version)
+//    {
+//        super(context, name, factory, version);
+//    }
+
     public DatabaseSyncer(Context c)
     {
         super(c, DATABASE_FILE, null, DATABASE_VERSION);
