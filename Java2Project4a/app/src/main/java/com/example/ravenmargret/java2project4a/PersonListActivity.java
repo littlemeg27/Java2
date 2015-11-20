@@ -31,13 +31,12 @@ public class PersonListActivity extends Activity implements View.OnClickListener
 
         findViewById(R.id.addPersonButton).setOnClickListener(this);
 
-        Intent callingIntent = getIntent();
-        ArrayList dataList = callingIntent.getStringArrayListExtra(PERSONKEY);
-
-        Intent intent = new Intent(this, DetailActivity.class);
-        intent.putStringArrayListExtra("dataList", dataList);
-        startActivityForResult(intent, 45454545);
-
+//        Intent callingIntent = getIntent();
+//        ArrayList dataList = callingIntent.getStringArrayListExtra(PERSONKEY);
+//
+//        Intent intent = new Intent(this, DetailActivity.class);
+//        intent.putStringArrayListExtra("dataList", dataList);
+//        startActivityForResult(intent, 45454545);
     }
 
     private void showListFragment(Fragment listFrag)

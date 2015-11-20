@@ -54,7 +54,7 @@ public class DetailFragment extends Fragment implements View.OnClickListener
           if (args != null)
           {
               // Set article based on argument passed in
-              updateText((ArrayList)args.getStringArrayList(KEY).toString());
+              //updateText((ArrayList)args.getStringArrayList(KEY).toString());
               //String selectedItem = dataForm.get(position).toString();
           }
       }
@@ -75,10 +75,6 @@ public class DetailFragment extends Fragment implements View.OnClickListener
     public void onClick(View v)
     {
         Toast.makeText(getActivity(), "Contact Deleted", Toast.LENGTH_LONG).show();
-
-//        Form form = new Form(firstName, lastName, age);
-//        FormUtil.delete(form, getActivity());
-        //Tried to add delete button, ran out of time to finish dealing with the call for it resets just isnt deleting
 
         getActivity().finish();
     }
