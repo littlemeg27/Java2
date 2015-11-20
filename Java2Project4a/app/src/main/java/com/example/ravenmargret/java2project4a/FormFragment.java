@@ -37,13 +37,13 @@ public class FormFragment extends Fragment implements View.OnClickListener
         return inflater.inflate(R.layout.fragment_form, container, false);
     }
 
-    private void addCrud()
+    private void addCrud(String firstName, String lastName, int age)
     {
         ContentValues values = new ContentValues();
-        values.put(DatabaseSyncer.FIRST_NAME, "First Name");
-        values.put(DatabaseSyncer.LAST_NAME, "Last Name");
-        values.put(DatabaseSyncer.AGE, "Age");
-        Uri crudUri = getContentResolver().insert(CRUDProvider.CONTENT_URI, values);
+        values.put(Contract.FIRST_NAME, firstName);
+        values.put(Contract.LAST_NAME, lastName);
+        values.put(Contract.AGE, age);
+        Uri crudUri = getActivity().getContentResolver().insert(Uri.parse(Contract.DATA_SOURCE_URI), values);
         Log.e("Main", "TESTING" + crudUri.getLastPathSegment());
     }
 
@@ -51,7 +51,6 @@ public class FormFragment extends Fragment implements View.OnClickListener
     public void onActivityCreated(Bundle savedInstanceState)
     {
         super.onActivityCreated(savedInstanceState);
-        addCrud();
 
         firstNameText = (EditText)getView().findViewById(R.id.firstNameText);
         lastNameText = (EditText)getView().findViewById(R.id.lastNameText);
@@ -70,8 +69,7 @@ public class FormFragment extends Fragment implements View.OnClickListener
 
         Toast.makeText(getActivity(), "Contact Added", Toast.LENGTH_LONG).show();
 
-        Form form = new Form(firstName, lastName, age);
-        FormUtil.save(form, getActivity());
+        addCrud(firstName, lastName, Integer.parseInt(age));
 
         getActivity().finish();
     }

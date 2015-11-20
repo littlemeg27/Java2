@@ -18,19 +18,19 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
+import java.text.Normalizer;
 import java.util.ArrayList;
 
 public class PersonListFragment extends ListFragment
 {
     private OnFragmentInteractionListener mListener;
-    ArrayList<Form> formObject;
+    ArrayList<String> dataForm = new ArrayList<String>();
 
     public PersonListFragment()
     {
 
     }
-
-
 
     @Override
     public void onAttach(Activity activity)
@@ -53,42 +53,40 @@ public class PersonListFragment extends ListFragment
     {
         super.onActivityCreated(savedInstanceState);
 
-        Cursor cursor = getContentResolver().query(CRUDProvider.CONTENT_URI, DatabaseSyncer.ALL, null, null, null);
+        String[] columns = {Contract.ID, Contract.FIRST_NAME, Contract.LAST_NAME, Contract.AGE};
 
-        String[] from = {DatabaseSyncer.FIRST_NAME};
-        int[] to = {android.R.id.text1};
-        CursorAdapter adapter = new SimpleCursorAdapter(getActivity(), android.R.layout.simple_list_item_1, cursor,from, to, 0);
+        Cursor cursor = getActivity().getContentResolver().query(Uri.parse(Contract.DATA_SOURCE_URI), columns, null, null, null);
 
-        if(formObject == null)
+        String[] fromDatabase = {Contract.FIRST_NAME};
+        int[] setToList = {android.R.id.text1};
+        CursorAdapter adapter = new SimpleCursorAdapter(getActivity(), android.R.layout.simple_list_item_1, cursor, fromDatabase, setToList, 0);
+        setListAdapter(adapter);
+
+        int columnIndex = cursor.getColumnIndex(Contract.FIRST_NAME);
+        int columnIndex1 = cursor.getColumnIndex(Contract.LAST_NAME);
+        int columnIndex2 = cursor.getColumnIndex(Contract.AGE);
+
+        while (cursor.moveToNext())
         {
-            Toast.makeText(getActivity(), "The list is empty", Toast.LENGTH_LONG).show();
-        }
-        else
-        {
-            loadData();
+            dataForm.add(cursor.getString(columnIndex));
+            dataForm.add(cursor.getString(columnIndex1));
+            dataForm.add(cursor.getString(columnIndex2));
         }
     }
-
-
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id)
     {
         super.onListItemClick(l, v, position, id);
-        Form f = (Form) getListAdapter().getItem(position);
-        mListener.onFragmentInteraction(f);
+        String selectedItem = dataForm.get(position).toString();
+        //dataForm d = (dataForm)getListAdapter().getItem(position);
+        mListener.onFragmentInteraction();
     }
 
-    public void loadData()
-    {
-        formObject = FormUtil.load(getActivity());
-        ArrayAdapter<Form> formArrayAdapter = new ArrayAdapter<Form>(getActivity(), android.R.layout.simple_list_item_1, formObject);
-        setListAdapter(formArrayAdapter);
-    }
 
     public interface OnFragmentInteractionListener //This method transfers data to the other fragment
     {
         // TODO: Update argument type and name
-        void onFragmentInteraction(Form formObject);
+        void onFragmentInteraction();
     }
 }

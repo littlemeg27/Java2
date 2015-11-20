@@ -37,13 +37,10 @@ public class PersonListActivity extends Activity implements View.OnClickListener
         findViewById(R.id.addPersonButton).setOnClickListener(this);
     }
 
-
-
     private void showListFragment(Fragment listFrag)
     {
         manager.beginTransaction().replace(R.id.container, listFrag).commit();
     }
-
 
     @Override
     public void onClick(View v)
@@ -59,17 +56,26 @@ public class PersonListActivity extends Activity implements View.OnClickListener
         //Refresh list here
         //Find person list frag call load data to update list
         PersonListFragment fragment = (PersonListFragment) getFragmentManager().findFragmentById(R.id.container); //Re call the entire frag
-        fragment.loadData(); //Call the method inside the frag
-    }   //I find this a really weird way to do things but if it works it works
+    }
 
     @Override
-    public void onFragmentInteraction(Form formObject)
+    public void onFragmentInteraction()
     {
         Bundle extras = new Bundle();
-        extras.putSerializable(DetailActivity.PERSONKEY, formObject);
+        extras.putSerializable(DetailActivity.PERSONKEY, );
         Intent intent = new Intent(this, DetailActivity.class);
         intent.putExtras(extras);
         startActivityForResult(intent, 45454545);
     }
+
+//    @Override
+//    public void onFragmentInteraction(Form formObject)
+//    {
+//        Bundle extras = new Bundle();
+//        extras.putSerializable(DetailActivity.PERSONKEY, formObject);
+//        Intent intent = new Intent(this, DetailActivity.class);
+//        intent.putExtras(extras);
+//        startActivityForResult(intent, 45454545);
+//    }
 }
 

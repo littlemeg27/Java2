@@ -28,11 +28,10 @@ public class DetailActivity extends Activity
         showDetailFragment(detailFragment);
 
         Intent callingIntent = getIntent();
-        Form object = (Form)callingIntent.getSerializableExtra(PERSONKEY);
-//        Log.e("Intent open:", Form.object);
+        //Form object = (Form)callingIntent.get(PERSONKEY);
 
         Bundle args = new Bundle();
-        args.putSerializable(DetailFragment.KEY, object);
+        //args.put(DetailFragment.KEY, object);
         detailFragment.setArguments(args);
 
     }

@@ -1,8 +1,4 @@
-/**
- * Created by Brenna Pavlinchak on 11/19/15.
- */
-
-package com.example.ravenmargret.java2project4a;
+package com.example.ravenmargret.java2project4b;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -12,7 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 
-
+/**
+ * Created by Brenna Pavlinchak on 11/17/15.
+ */
 public class CRUDProvider extends ContentProvider
 {
     private static final String AUTHORITY = "com.example.ravenmargret.java2project4a.CRUDProvider";
@@ -44,7 +42,7 @@ public class CRUDProvider extends ContentProvider
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder)
     {
-        return database.query(DatabaseSyncer.CRUD_TABLE, DatabaseSyncer.ALL, selection, null, null, null, DatabaseSyncer.FIRST_NAME + "DESC");
+        return database.query(DatabaseSyncer.CRUD_TABLE, DatabaseSyncer.ALL, selection, null, null, null, null);
     }
 
     @Nullable

@@ -2,7 +2,7 @@
  * Created by Brenna Pavlinchak on 11/17/15.
  */
 
-package com.example.ravenmargret.java2project4a;
+package com.example.ravenmargret.java2project4b;
 
 
 import android.content.Context;
@@ -12,7 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseSyncer extends SQLiteOpenHelper
 {
     private static final String DATABASE_FILE = "database.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
 
     public static final String CRUD_TABLE = "Crud";
     public static final String ID = "_id"; //Constants for table and columns
@@ -20,11 +20,11 @@ public class DatabaseSyncer extends SQLiteOpenHelper
     public static final String LAST_NAME = "lastName";
     public static final String AGE = "age";
 
-    private static final String CREATE_TABLE = "CREATE TABLE " + CRUD_TABLE + "(" +
+    private static final String CREATE_TABLE = "CREATE TABLE " + CRUD_TABLE + " (" +
                                 ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                                FIRST_NAME + "FIRST NAME" +
-                                LAST_NAME + "LAST NAME " +
-                                AGE + " AGE " + ")";
+                                FIRST_NAME + " TEXT, " +
+                                LAST_NAME + " TEXT, " +
+                                AGE + " INTEGER )";
 
     public static final String[] ALL = {ID, FIRST_NAME, LAST_NAME, AGE};
 

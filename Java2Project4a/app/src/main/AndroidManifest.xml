@@ -2,9 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ravenmargret.java2project4a" >
 
-    <permission android:name="com.company.android.provider.ACCESS_DATA"
-        android:protectionLevel="dangerous" />
-    <uses-permission android:name="com.company.android.provider.ACCESS_DATA" />
+    <uses-permission android:name="com.example.ravenmargret.java2project4a.CRUDProvider.ACCESS_DATA" />
 
     <application
         android:allowBackup="true"
@@ -30,12 +28,6 @@
             android:label="@string/title_activity_detail" >
         </activity>
 
-        <provider android:name=".CRUDProvider"
-            android:authorities="com.example.ravenmargret.java2project4a.CRUDProvider"
-            android:enabled="true"
-            android:exported="true"
-            android:permission="com.company.android.provider.ACCESS_DATA" >
-        </provider>
     </application>
 
 </manifest>

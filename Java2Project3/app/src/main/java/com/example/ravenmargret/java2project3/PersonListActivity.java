@@ -51,7 +51,6 @@ public class PersonListActivity extends Activity implements View.OnClickListener
         //Find person list frag call load data to update list
         PersonListFragment fragment = (PersonListFragment) getFragmentManager().findFragmentById(R.id.container); //Re call the entire frag
         fragment.loadData(); //Call the method inside the frag
-    }   //I find this a really weird way to do things but if it works it works
 
 
         //Create new details fragment, pass weather object to details frag add details frag to layout
