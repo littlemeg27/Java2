@@ -14,6 +14,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 
 public class DetailFragment extends Fragment implements View.OnClickListener
 {
@@ -42,30 +45,31 @@ public class DetailFragment extends Fragment implements View.OnClickListener
         deletePersonButton.setOnClickListener(this);
     }
 
-//    @Override
-//    public void onStart()
-//    {
-//        super.onStart();
-//
-//        Bundle args = getArguments();
-//        if (args != null)
-//        {
-//            // Set article based on argument passed in
-//            updateText((Form)args.getSerializable(KEY));
-//        }
-//    }
-//
-//    public void updateText(Form object)
-//    {
-//        TextView dayText = (TextView) getActivity().findViewById(R.id.firstTextView);
-//        dayText.setText(object.getmFirstName());
-//
-//        TextView forecastTextView = (TextView) getActivity().findViewById(R.id.lastTextView);
-//        forecastTextView.setText(object.getmLastName());
-//
-//        TextView metricForecastTextView = (TextView) getActivity().findViewById(R.id.ageTextView);
-//        metricForecastTextView.setText(object.getmAge());
-//    }
+      @Override
+      public void onStart()
+      {
+          super.onStart();
+
+          Bundle args = getArguments();
+          if (args != null)
+          {
+              // Set article based on argument passed in
+              updateText((ArrayList)args.getStringArrayList(KEY).toString());
+              //String selectedItem = dataForm.get(position).toString();
+          }
+      }
+
+      public void updateText()
+      {
+        TextView firstNameTextView = (TextView) getActivity().findViewById(R.id.firstTextView);
+          //firstNameTextView.setText();
+
+        TextView lastNameTextView = (TextView) getActivity().findViewById(R.id.lastTextView);
+          //lastNameTextView.setText();
+
+        TextView ageTextView = (TextView) getActivity().findViewById(R.id.ageTextView);
+          //ageTextView.setText();
+    }
 
     @Override
     public void onClick(View v)

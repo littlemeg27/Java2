@@ -11,10 +11,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
+import java.util.ArrayList;
+
 public class DetailActivity extends Activity
 {
     FragmentManager manager;
-    public static final String PERSONKEY = "thePersonKey";
+    public static final String FORMKEY = "theFormKey";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -28,17 +30,17 @@ public class DetailActivity extends Activity
         showDetailFragment(detailFragment);
 
         Intent callingIntent = getIntent();
-        //Form object = (Form)callingIntent.get(PERSONKEY);
+        ArrayList dataList = callingIntent.getStringArrayListExtra(FORMKEY);
 
         Bundle args = new Bundle();
-        //args.put(DetailFragment.KEY, object);
+        args.putStringArrayList(DetailFragment.KEY, dataList);
         detailFragment.setArguments(args);
 
     }
 
     private void showDetailFragment(Fragment detailFrag)
     {
-        manager.beginTransaction().replace(R.id.container, detailFrag).commit();
+        manager.beginTransaction().replace(R.id.container1, detailFrag).commit();
     }
 
     public void sendText() //Trying to do the send out, not going so well

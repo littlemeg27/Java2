@@ -6,6 +6,7 @@ package com.example.ravenmargret.java2project4a;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 
 public class PersonListFragment extends ListFragment
 {
-    private OnFragmentInteractionListener mListener;
+    //private OnFragmentInteractionListener mListener;
     ArrayList<String> dataForm = new ArrayList<String>();
 
     public PersonListFragment()
@@ -39,7 +40,7 @@ public class PersonListFragment extends ListFragment
 
         try
         {
-            mListener = (OnFragmentInteractionListener) activity;
+            //mListener = (OnFragmentInteractionListener) activity;
         }
         catch (ClassCastException e)
         {
@@ -79,14 +80,18 @@ public class PersonListFragment extends ListFragment
     {
         super.onListItemClick(l, v, position, id);
         String selectedItem = dataForm.get(position).toString();
-        //dataForm d = (dataForm)getListAdapter().getItem(position);
-        mListener.onFragmentInteraction();
-    }
+        Log.e("Selected", selectedItem);
+
+        Intent intent = new Intent(getActivity(), PersonListActivity.class);
+        intent.putStringArrayListExtra("dataForm", dataForm);
+        startActivityForResult(intent, 45454545);
 
 
-    public interface OnFragmentInteractionListener //This method transfers data to the other fragment
-    {
-        // TODO: Update argument type and name
-        void onFragmentInteraction();
+//        Bundle extras = new Bundle();
+//        extras.putString(DetailActivity.PERSONKEY, );
+//
+//        intent.putExtras(extras);
+//        startActivityForResult(intent, 45454545);
     }
+
 }

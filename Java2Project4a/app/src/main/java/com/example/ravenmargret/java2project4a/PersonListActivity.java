@@ -7,27 +7,22 @@ package com.example.ravenmargret.java2project4a;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
-public class PersonListActivity extends Activity implements View.OnClickListener, PersonListFragment.OnFragmentInteractionListener
+import java.util.ArrayList;
+
+public class PersonListActivity extends Activity implements View.OnClickListener
 {
     FragmentManager manager;
+    public static final String PERSONKEY = "thePersonKey";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_person_list);
+        setContentView(R.layout.activity_list);
 
         manager = getFragmentManager();
 
@@ -35,6 +30,14 @@ public class PersonListActivity extends Activity implements View.OnClickListener
         showListFragment(listFragment);
 
         findViewById(R.id.addPersonButton).setOnClickListener(this);
+
+        Intent callingIntent = getIntent();
+        ArrayList dataList = callingIntent.getStringArrayListExtra(PERSONKEY);
+
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putStringArrayListExtra("dataList", dataList);
+        startActivityForResult(intent, 45454545);
+
     }
 
     private void showListFragment(Fragment listFrag)
@@ -58,15 +61,6 @@ public class PersonListActivity extends Activity implements View.OnClickListener
         PersonListFragment fragment = (PersonListFragment) getFragmentManager().findFragmentById(R.id.container); //Re call the entire frag
     }
 
-    @Override
-    public void onFragmentInteraction()
-    {
-        Bundle extras = new Bundle();
-        extras.putSerializable(DetailActivity.PERSONKEY, );
-        Intent intent = new Intent(this, DetailActivity.class);
-        intent.putExtras(extras);
-        startActivityForResult(intent, 45454545);
-    }
 
 //    @Override
 //    public void onFragmentInteraction(Form formObject)
